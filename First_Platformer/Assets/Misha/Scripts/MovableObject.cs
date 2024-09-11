@@ -2,23 +2,15 @@ using UnityEngine;
 
 public class MovableObject : MonoBehaviour
 {
-    private RoadManager _roadManager;
-    private float _speed;
+    private float _speed;    
 
-    private void Start()
+    public void Init(float speed)
     {
-        Init();
-    }    
-
-    private void Init()
-    {
-        _roadManager = RoadManager.Instance;
-        _speed = _roadManager.RoadSpeed;
+        _speed = speed;
     }
 
     private void FixedUpdate()
     {
-        _speed = _roadManager.RoadSpeed;
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
     }
 }

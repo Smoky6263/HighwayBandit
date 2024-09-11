@@ -14,17 +14,6 @@ public class RoadManager : MonoBehaviour
 
     private List<GameObject> _roadSamplesList = new List<GameObject>();
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
 
     private void Start()
     {
@@ -43,6 +32,8 @@ public class RoadManager : MonoBehaviour
         {
             GameObject road = Instantiate(roadSamples[Random.Range(0, roadSamples.Count)], transform.position + (positionOffset * i), Quaternion.identity, transform);
             RespawnRoad initRoad = road.GetComponent<RespawnRoad>();
+            MovableObject movableObject = road.GetComponent<MovableObject>();
+            movableObject.Init(_roadSpeed);
             initRoad.Init(_respawnPosition);
             _roadSamplesList.Add(road);
         }
