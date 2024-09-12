@@ -7,6 +7,11 @@ public class CameraScript : MonoBehaviour
     [SerializeField] private float _cameraSpeed;
 
 
+    public void Init(Transform player)
+    {
+        _player = player;
+    }
+
     private void FixedUpdate()
     {
         CameraPosition();
@@ -16,7 +21,7 @@ public class CameraScript : MonoBehaviour
     private void CameraPosition()
     {
         Vector3 currentPosition = transform.position;
-        Vector3 targetPosition = new Vector3(_player.transform.position.x, _player.transform.position.y + _cameraHeight, transform.position.z);
+        Vector3 targetPosition = new Vector3(_player.transform.position.x, _player.transform.position.y + _cameraHeight, _player.transform.position.z - _cameraHeight);
 
         transform.position = Vector3.Lerp(currentPosition, targetPosition, _cameraSpeed);
     }

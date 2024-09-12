@@ -8,11 +8,11 @@ public class RoadManager : MonoBehaviour
     [SerializeField] private float _roadSpeed;
     [SerializeField] private int _roadCount;
     [SerializeField] private float _positionOffset = -36.0f;
-    [SerializeField] private float _respawnPosition;
     [SerializeField] private List<GameObject> _roadSamples;
     public float RoadSpeed { get { return _roadSpeed; } private set { _roadSpeed = value; } }
 
     private List<GameObject> _roadSamplesList = new List<GameObject>();
+    private float _respawnPosition;
 
 
     private void Start()
@@ -22,6 +22,7 @@ public class RoadManager : MonoBehaviour
 
     private void Init()
     {
+        _respawnPosition = _positionOffset * _roadCount;
         SpawnRoads(_roadSamples);
     }
 
