@@ -3,18 +3,13 @@ using UnityEngine;
 
 public class RoadManager : MonoBehaviour
 {
-    public static RoadManager Instance { get; private set; }
 
     [SerializeField] private float _roadSpeed;
-    [SerializeField] private int _roadCount;
-    [SerializeField] private float _positionOffset = -36.0f;
+    [SerializeField] private int _samplesCount;
+    [SerializeField] private float _sampleLength = 36f;
     [SerializeField] private List<GameObject> _roadSamples;
-    public float RoadSpeed { get { return _roadSpeed; } private set { _roadSpeed = value; } }
 
     private List<GameObject> _roadSamplesList = new List<GameObject>();
-    private float _respawnPosition;
-
-
     private void Start()
     {
         Init();
@@ -22,20 +17,19 @@ public class RoadManager : MonoBehaviour
 
     private void Init()
     {
-        _respawnPosition = _positionOffset * _roadCount;
         SpawnRoads(_roadSamples);
     }
 
     private void SpawnRoads(List<GameObject> roadSamples)
     {
-        Vector3 positionOffset = new Vector3(0f, 0f, _positionOffset);
-        for (int i = 0; i < _roadCount; i++)
+        for (int i = 0; i < _samplesCount; i++)
         {
-            GameObject road = Instantiate(roadSamples[Random.Range(0, roadSamples.Count)], transform.position + (positionOffset * i), Quaternion.identity, transform);
+            Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, _sampleLength * i);
+            GameObject road = Instantiate(roadSamples[Random.Range(0, roadSamples.Count)], transform.position + targetPosition, Quaternion.identity, transform) ;
             RespawnRoad initRoad = road.GetComponent<RespawnRoad>();
             MovableObject movableObject = road.GetComponent<MovableObject>();
             movableObject.Init(_roadSpeed);
-            initRoad.Init(_respawnPosition);
+            initRoad.Init(i, _sampleLength, _samplesCount, _roadSpeed);
             _roadSamplesList.Add(road);
         }
     }
