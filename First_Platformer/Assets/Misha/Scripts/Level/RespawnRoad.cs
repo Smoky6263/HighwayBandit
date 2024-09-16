@@ -79,7 +79,7 @@ public class RespawnRoad : MonoBehaviour
 
             case > 0f:
                 transform.localPosition = Vector3.zero;
-                break;            
+                break;
 
             default:
                 break;

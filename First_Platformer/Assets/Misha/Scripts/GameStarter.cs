@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameStarter : MonoBehaviour
@@ -9,10 +10,14 @@ public class GameStarter : MonoBehaviour
 
     private GameObject _player, _startPlayerCar, _enemyCar;
 
+    private Transform _levelManager, _carManager;
+
     private void Awake()
     {
+        InitializeMainTransform();
         Init();
     }
+
 
     private void Init()
     {
@@ -22,5 +27,16 @@ public class GameStarter : MonoBehaviour
         _player = Instantiate(_playerPrefab, _startPlayerCarSpawnPos.transform.position + spawnYoffset, Quaternion.identity);
         _player.transform.SetParent(_startPlayerCar.transform);
         _enemyCar.GetComponent<EnemyCar>().Init(_player.transform);
+    }
+    private void InitializeMainTransform()
+    {
+        foreach (Transform child in transform)
+        {
+            if(child.GetComponentInChildren<RoadManager>() != null)
+                _levelManager = child.GetComponentInChildren<RoadManager>().transform;
+
+            if(child.GetComponentInChildren<CarSpawner>() != null)
+                    _carManager = child.GetComponentInChildren<CarSpawner>().transform;
+        }
     }
 }
