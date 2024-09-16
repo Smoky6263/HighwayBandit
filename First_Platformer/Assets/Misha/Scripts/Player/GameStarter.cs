@@ -7,11 +7,6 @@ public class GameStarter : MonoBehaviour
     
     [SerializeField] private float _spawnYoffset;
 
-    // private readonly float _stripLeftEdgeCenter = -7.166974f;
-    // private readonly float _stripLeftCenter = -4.221236f;
-    // private readonly float _stripStep = 2.854522f;
-    // private float _zOffset = 126f;
-
     private GameObject _player, _startPlayerCar, _enemyCar;
 
     private void Awake()

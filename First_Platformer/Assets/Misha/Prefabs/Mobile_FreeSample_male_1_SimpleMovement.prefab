@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 3721721014206299207}
   - component: {fileID: 8998218332072572878}
   - component: {fileID: 4175596296511083599}
+  - component: {fileID: 3500498083905330500}
   m_Layer: 0
   m_Name: Mobile_FreeSample_male_1_SimpleMovement
   m_TagString: Untagged
@@ -426,6 +427,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 174dd8c08f3050d44b6509d4c3491764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3500498083905330500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3142811720079799082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9085994cbb6fb1498b6c24d1a37572c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3299545216038869815

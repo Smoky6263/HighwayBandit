@@ -22,14 +22,14 @@ public class RoadManager : MonoBehaviour
 
     private void SpawnRoads(List<GameObject> roadSamples)
     {
-        for (int i = 0; i < _samplesCount; i++)
+        for (int id = 0; id < _samplesCount; id++)
         {
-            Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, _sampleLength * i);
+            Vector3 targetPosition = new Vector3(transform.position.x, transform.position.y, _sampleLength * id);
             GameObject road = Instantiate(roadSamples[Random.Range(0, roadSamples.Count)], transform.position + targetPosition, Quaternion.identity, transform) ;
             RespawnRoad initRoad = road.GetComponent<RespawnRoad>();
             MovableObject movableObject = road.GetComponent<MovableObject>();
             movableObject.Init(_roadSpeed);
-            initRoad.Init(i, _sampleLength, _samplesCount, _roadSpeed);
+            initRoad.Init(id, _sampleLength, _samplesCount, _roadSpeed);
             _roadSamplesList.Add(road);
         }
     }

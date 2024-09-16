@@ -6,7 +6,6 @@ public class StartPlayerCar : MonoBehaviour
     [SerializeField] private float _distanceToStartGame;
     
     private float _speed;
-    private float _timer = 0f;
     private void Awake()
     {
         _speed = _distanceToStartGame / _timeToStart;
@@ -20,10 +19,5 @@ public class StartPlayerCar : MonoBehaviour
     private void MoveCar()
     {
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
-        
-        _timer += Time.deltaTime;
-
-        if (_timer > _timeToStart)
-            Debug.Log("Game Started!");
     }
 }
