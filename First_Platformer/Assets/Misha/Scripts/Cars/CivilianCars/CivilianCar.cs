@@ -7,22 +7,22 @@ public class CivilianCar : MonoBehaviour
     [SerializeField] private float _changeSpeedValue;
     [SerializeField] private float _playerDistance;
 
+    public int ID { get { return _id; } }
     public float Speed { get { return _speed; } }
+    public float HalfLengthOfCar { get { return _halfLengthOfCar; } }
 
-    private CarSpawner _carSpawner;
-    private Transform _player;
+
     private Vector3 _forwardRay;
+
+    private int _id;
 
     private float _halfLengthOfCar;
     private float _halfHeightOfCar;
 
-    private int _myStrip;
 
-    public void Init(CarSpawner carSpawner, Transform player, int strip, float speed, float halfLength, float halfHeight)
+    public void Init(int id, float speed, float halfLength, float halfHeight)
     {
-        _carSpawner = carSpawner;
-        _player = player;
-        _myStrip = strip;
+        _id = id;
         _speed = speed;
         _halfHeightOfCar = halfHeight;
         _halfLengthOfCar = halfLength;
@@ -32,16 +32,6 @@ public class CivilianCar : MonoBehaviour
     {
         DoMove();
         CheckFrontCrash();
-        //CheckDistanceToPlayer();
-    }
-
-    private void CheckDistanceToPlayer()
-    {
-        float distance = Vector3.Distance(transform.position, _player.position);
-
-        if (distance < _playerDistance) return;
-
-        _carSpawner.SpawnCarInFrontOfThePlayer(this, _myStrip, _halfLengthOfCar);
     }
 
     private void CheckFrontCrash()
@@ -63,16 +53,12 @@ public class CivilianCar : MonoBehaviour
     {
         _speed += value;
     }
-    public void RespawnChangeSpeed(float value)
-    {
-        _speed = value;
-    }
 
     private void DoMove()
     {
         transform.Translate(Vector3.forward * _speed * Time.deltaTime);
     }
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

@@ -17,7 +17,6 @@ public class LevelForwardScript : MonoBehaviour
 
     private void MoveLevel()
     {
-        Debug.Log("Action Work!");
         Vector3 targetPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + _stepLength * _stepsCount);
         transform.localPosition = targetPosition;
     }

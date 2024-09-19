@@ -10,7 +10,7 @@ public class GameStarter : MonoBehaviour
 
     private GameObject _player, _startPlayerCar, _enemyCar;
 
-    private Transform _levelManager, _carManager;
+    private CarsSpawner _carSpawner;
 
     private void Awake()
     {
@@ -23,20 +23,20 @@ public class GameStarter : MonoBehaviour
     {
         _startPlayerCar = Instantiate(_startPlayerCarPrefab, _startPlayerCarSpawnPos.transform.position, Quaternion.identity);
         _enemyCar = Instantiate(_enemyCarPrefab, _enemyCarSpawnPos.transform.position, Quaternion.identity);
-        Vector3 spawnYoffset = new Vector3(0f, _spawnYoffset, 0f);
-        _player = Instantiate(_playerPrefab, _startPlayerCarSpawnPos.transform.position + spawnYoffset, Quaternion.identity);
+
+        Vector3 playerSpawnYoffset = new Vector3(0f, _spawnYoffset, 0f);
+        _player = Instantiate(_playerPrefab, _startPlayerCarSpawnPos.transform.position + playerSpawnYoffset, Quaternion.identity);
         _player.transform.SetParent(_startPlayerCar.transform);
+
         _enemyCar.GetComponent<EnemyCar>().Init(_player.transform);
+        _carSpawner.Init(_player.transform);
     }
     private void InitializeMainTransform()
     {
         foreach (Transform child in transform)
         {
-            if(child.GetComponentInChildren<RoadManager>() != null)
-                _levelManager = child.GetComponentInChildren<RoadManager>().transform;
-
-            if(child.GetComponentInChildren<CarSpawner>() != null)
-                    _carManager = child.GetComponentInChildren<CarSpawner>().transform;
+            if(child.GetComponentInChildren<CarsSpawner>() != null)
+                    _carSpawner = child.GetComponentInChildren<CarsSpawner>();
         }
     }
 }

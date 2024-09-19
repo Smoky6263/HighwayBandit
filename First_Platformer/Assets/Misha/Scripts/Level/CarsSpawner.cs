@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class CarSpawner : MonoBehaviour
+public class CarsSpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _carSpawnPosition = new List<Transform>();
     [SerializeField] private List<GameObject> _carPrefab = new List<GameObject>();
@@ -12,13 +11,15 @@ public class CarSpawner : MonoBehaviour
     [SerializeField, Range(0f,4f)] private float _minDistance;
     [SerializeField, Range(2f,10f)] private float _maxDistance;
 
-    [SerializeField] private Transform _player;
 
-    private List<Transform> _carList;
+    private Transform _player;
 
-    private void Awake()
+    public List<GameObject> CarPrefab { get { return _carPrefab; } }
+
+
+    public void Init(Transform player)
     {
-        _carList = new List<Transform>();
+        _player = player;
         SpawnCars();
     }
 
@@ -37,20 +38,27 @@ public class CarSpawner : MonoBehaviour
 
         for (int strip = 0; strip < _carSpawnPosition.Count; strip++)
         {
-            int carPerStrip = _carsCount / (int)_carSpawnPosition.Count;
+            int carPerStrip = _carsCount / _carSpawnPosition.Count;
             currentSpawnPosition = _carSpawnPosition[strip].localPosition;
             nextSpawnPosition = Vector3.zero;
+            
+            StripManager stripManager = _carSpawnPosition[strip].GetComponent<StripManager>();
+            stripManager.Init(this, _player, carPerStrip);
 
-            for (int i = 0; i < carPerStrip; i++)
+            for (int id = 0; id < carPerStrip; id++)
             {
                 CreateNewCar(out randomizeCar, out speed, out randomizeDistanceBetweenCars, out halfLength, out halfHeight);
                 Transform car = Instantiate(_carPrefab[randomizeCar].transform, currentSpawnPosition + nextSpawnPosition, Quaternion.identity, _carSpawnPosition[strip]);
+                
                 CivilianCar civilianCar = car.GetComponent<CivilianCar>();
-                civilianCar.Init(this, _player, strip, speed, halfLength, halfHeight);
+                civilianCar.Init(id, speed, halfLength, halfHeight);
+
+                stripManager.AddCarInArray(id, car);
+
                 currentSpawnPosition = new Vector3(_carSpawnPosition[strip].position.x, _carSpawnPosition[strip].position.y, car.position.z + halfLength);
                 nextSpawnPosition = new Vector3(0f,0f, halfLength + randomizeDistanceBetweenCars);
-                _carList.Add(car);
-                car.transform.name = $"Car {i}";
+                
+                car.transform.name = $"Car {id}";
             }
         }
     }
@@ -63,14 +71,11 @@ public class CarSpawner : MonoBehaviour
         halfLength = _carPrefab[randomizeCar].transform.GetComponentInChildren<Renderer>().bounds.size.z / 2;
         halfHeight = _carPrefab[randomizeCar].transform.GetComponentInChildren<Renderer>().bounds.size.y / 2;
     }
-
-    public void SpawnCarInFrontOfThePlayer(CivilianCar car, int strip, float halfLength)
+    public void CreateNewCar(out float halfLength,  out float speed, out float randomizeDistanceBetweenCars)
     {
-        float randomizeDistanceBetweenCars = Random.Range(_minDistance, _maxDistance);
-        float speed = _carsSpeed + Random.Range(-_randomizeCarsSpeed, _randomizeCarsSpeed);
-        Vector3 targetPosition = new Vector3(0f, 0f, halfLength + randomizeDistanceBetweenCars);
-        car.RespawnChangeSpeed(speed);
-        car.transform.position = _carList.Last().position + targetPosition;
-
+        int randomizeCar = Random.Range(0, _carPrefab.Count);
+        randomizeDistanceBetweenCars = Random.Range(_minDistance, _maxDistance);
+        halfLength = _carPrefab[randomizeCar].transform.GetComponentInChildren<Renderer>().bounds.size.z / 2;
+        speed = _carsSpeed + Random.Range(-_randomizeCarsSpeed, _randomizeCarsSpeed);
     }
 }
