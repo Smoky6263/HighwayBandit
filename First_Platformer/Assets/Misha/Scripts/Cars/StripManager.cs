@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StripManager : MonoBehaviour
@@ -7,20 +6,20 @@ public class StripManager : MonoBehaviour
 
     private Transform _player;
     private CarsSpawner _carsSpawner;
-    private CheckPlayerPosition[] _carsArray;
+    private DistanceToPlayer[] _carsArray;
     private int _carsCount;
     public void Init(CarsSpawner carsSpawner,Transform player, int carsCount)
     {
         _carsSpawner = carsSpawner;
         _player = player;
         _carsCount = carsCount;
-        _carsArray = new CheckPlayerPosition[_carsCount];
+        _carsArray = new DistanceToPlayer[_carsCount];
 
     }
 
     public void AddCarInArray(int id, Transform car)
     {
-        _carsArray[id] = car.GetComponent<CheckPlayerPosition>();
+        _carsArray[id] = car.GetComponent<DistanceToPlayer>();
         _carsArray[id].Init(this, _carRespawnDistance);
 
         if (id != 0)
@@ -44,7 +43,8 @@ public class StripManager : MonoBehaviour
         Vector3 targetPosition = firstCarPosition + offsetPosition;
 
         lastCar.transform.localPosition = targetPosition;
-        CheckPlayerPosition lastElement = _carsArray[0];
+        lastCar.InitializeSpeed(speed);
+        DistanceToPlayer lastElement = _carsArray[0];
 
         for (int i = 0; i < _carsCount - 1; i++)
         {

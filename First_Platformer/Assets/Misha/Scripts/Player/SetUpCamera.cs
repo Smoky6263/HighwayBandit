@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SetUpCamera : MonoBehaviour
 {
-    private ParentingPlayerToObjects _parentingPlayerToObjects;
     private Camera _camera;
+    public Camera Camera { get { return _camera; } }
     private void Awake()
     {
         _camera = Camera.main.GetComponent<Camera>();
@@ -11,7 +11,5 @@ public class SetUpCamera : MonoBehaviour
         Transform player = GetComponent<Transform>();
         _camera.GetComponent<CameraScript>().Init(player);
 
-        _parentingPlayerToObjects = GetComponent<ParentingPlayerToObjects>();
-        _parentingPlayerToObjects.Init(_camera);
     }
 }

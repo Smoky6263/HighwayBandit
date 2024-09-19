@@ -32,6 +32,7 @@ public class PlayerOnJump : MonoBehaviour
         while (_onJump)
         {
             DoMove(direction, speed);
+            Debug.Log("I am on Jump!");
             yield return new WaitForFixedUpdate();
         }
         yield break;

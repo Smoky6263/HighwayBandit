@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CheckPlayerPosition : MonoBehaviour
+public class DistanceToPlayer : MonoBehaviour
 {
     private StripManager _stripManager;
     private CivilianCar _civilianCar;
@@ -9,14 +9,12 @@ public class CheckPlayerPosition : MonoBehaviour
 
     private float _teleportDistance;
 
-    private int _id;
     private bool _firstCar = false;
 
 
     public void Init(StripManager stripManager, float distance)
     {
         _civilianCar = GetComponent<CivilianCar>();
-        _id = _civilianCar.ID;
         _stripManager = stripManager;
         _teleportDistance = distance;
     }
@@ -33,16 +31,17 @@ public class CheckPlayerPosition : MonoBehaviour
     {
         while(_firstCar) 
         {
-            float distance = Vector3.Distance(transform.position, _playerPosition.position);
+            yield return new WaitForFixedUpdate();
+            float playerPosition = _playerPosition.position.z;
+            float carPosition = transform.position.z;
+            float distance = playerPosition - carPosition;
             if (distance > _teleportDistance)
             {
-                _stripManager.RespawnCar(_civilianCar);
                 _playerPosition = null;
                 _firstCar = false;
-                Debug.Log(_id + "Я телепоритровался!");
+                _stripManager.RespawnCar(_civilianCar);
                 yield break;
             }
-            yield return new WaitForFixedUpdate();
         }
     }
 
