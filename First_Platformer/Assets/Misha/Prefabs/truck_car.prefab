@@ -389,8 +389,9 @@ GameObject:
   - component: {fileID: 8668666358998481846}
   - component: {fileID: 5024060920235247177}
   - component: {fileID: 6705406843666703070}
-  - component: {fileID: 973778938854796167}
-  - component: {fileID: 5391448774633731568}
+  - component: {fileID: 1545517038894594814}
+  - component: {fileID: 1073425110346583861}
+  - component: {fileID: -3547042426656822232}
   m_Layer: 0
   m_Name: truck_car
   m_TagString: Untagged
@@ -406,7 +407,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5804642206771154028}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -438,7 +439,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.03297, y: 1.8646921, z: 4.440914}
-  m_Center: {x: 0, y: 1.278894, z: -0.12050772}
+  m_Center: {x: 0, y: 1.2788944, z: -0.12050772}
 --- !u!114 &6705406843666703070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,24 +454,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rearLightLeft: {fileID: 8173826155103473286}
   _rearLightRight: {fileID: 1166895056253247149}
-  _speed: 3
-  _distanceToDecreaseSpeed: 4
-  _distanceToIncreaseSpeed: 8
-  _increaseSpeed: 1
+  _speed: 2
+  _maxSpeedOffset: 0
+  _distanceToDecreaseSpeed: 8
+  _distanceToIncreaseSpeed: 12
+  _increaseSpeed: 0.7
   _decreaseSpeed: 0.5
---- !u!114 &973778938854796167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5804642206771154028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5d20d56f02b4c4eb39c60b82dc7c18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5391448774633731568
+--- !u!114 &1545517038894594814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -482,6 +472,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97100e07a384d9a4c83b606941f3ba46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1073425110346583861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804642206771154028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5d20d56f02b4c4eb39c60b82dc7c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3547042426656822232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804642206771154028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d372486d2203b8640aadd5845d80029b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _upForce: 2
 --- !u!1 &6420036074144952898
 GameObject:
   m_ObjectHideFlags: 0

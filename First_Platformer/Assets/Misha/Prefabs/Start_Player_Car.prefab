@@ -175,9 +175,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2992978684430047348}
-  - component: {fileID: 1641020788216116630}
   - component: {fileID: 1260292544263092052}
-  - component: {fileID: 623622163215740395}
+  - component: {fileID: 1641020788216116630}
+  - component: {fileID: 8583803142105233685}
+  - component: {fileID: 1907278341265914875}
   m_Layer: 0
   m_Name: Start_Player_Car
   m_TagString: Untagged
@@ -199,28 +200,12 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3886071103704787864}
-  - {fileID: 8600999266077743315}
   - {fileID: 5331907130400484976}
   - {fileID: 4419396207631495286}
   - {fileID: 1951558868540650288}
   - {fileID: 5899531179735735467}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1641020788216116630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3466074864563848276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc7c50f499288a2428ce0a5afb5c70ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeToStart: 5
-  _distanceToStartGame: 40
-  _decreaseSpeed: 0
 --- !u!65 &1260292544263092052
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -242,64 +227,44 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.03297, y: 1.8646921, z: 4.440914}
   m_Center: {x: 0, y: 1.2788944, z: -0.12050772}
---- !u!54 &623622163215740395
-Rigidbody:
+--- !u!114 &1641020788216116630
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3466074864563848276}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 0
-  m_ImplicitTensor: 0
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!1 &3682104629619289489
-GameObject:
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7c50f499288a2428ce0a5afb5c70ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToStart: 5
+  _distanceToStartGame: 40
+--- !u!114 &8583803142105233685
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8600999266077743315}
-  m_Layer: 0
-  m_Name: truck_car_Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8600999266077743315
-Transform:
+  m_GameObject: {fileID: 3466074864563848276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97100e07a384d9a4c83b606941f3ba46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1907278341265914875
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3682104629619289489}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3465484, z: -0.0052900314}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2992978684430047348}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 3466074864563848276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d372486d2203b8640aadd5845d80029b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5051397952591960412
 GameObject:
   m_ObjectHideFlags: 0

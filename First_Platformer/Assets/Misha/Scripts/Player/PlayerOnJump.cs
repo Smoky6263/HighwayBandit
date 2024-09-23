@@ -17,13 +17,21 @@ public class PlayerOnJump : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.transform.GetComponentInParent<CivilianCar>() != null) 
+        if (collision.transform.GetComponentInParent<CivilianCar>() != null)
         {
             CivilianCar civilianCar = collision.transform.GetComponentInParent<CivilianCar>();
             Vector3 carDirection = civilianCar.transform.forward;
             float speed = civilianCar.Speed;
             _onJump = true;
             StartCoroutine(PlayerOnJumpCoroutine(carDirection, speed));
+        }
+        if(collision.transform.GetComponentInParent<StartPlayerCar>() != null)
+        {
+            StartPlayerCar playerCar = collision.transform.GetComponentInParent<StartPlayerCar>();
+            Vector3 playerCardirection = playerCar.transform.forward;
+            float speed = playerCar.Speed;
+            _onJump = true;
+            StartCoroutine(PlayerOnJumpCoroutine(playerCardirection, speed));
         }
     }
 
@@ -32,13 +40,12 @@ public class PlayerOnJump : MonoBehaviour
         while (_onJump)
         {
             DoMove(direction, speed);
-            Debug.Log("I am on Jump!");
             yield return new WaitForFixedUpdate();
         }
         yield break;
     }
 
-    private void DoMove(Vector3 direction,float speed)
+    private void DoMove(Vector3 direction, float speed)
     {
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }

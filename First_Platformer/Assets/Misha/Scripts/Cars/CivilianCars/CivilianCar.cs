@@ -1,32 +1,37 @@
-using System.Collections;
 using UnityEngine;
 
-public class CivilianCar : MonoBehaviour
+public class CivilianCar : MonoBehaviour, ICar
 {
     [SerializeField] private GameObject _rearLightLeft;
     [SerializeField] private GameObject _rearLightRight;
 
     [SerializeField] private float _speed;
+    [SerializeField] private float _maxSpeedOffset;
     [SerializeField] private float _distanceToDecreaseSpeed;
     [SerializeField] private float _distanceToIncreaseSpeed;
     [SerializeField] private float _increaseSpeed;
     [SerializeField] private float _decreaseSpeed;
 
+
     public int ID { get { return _id; } }
-    public float Speed { get { return _speed; } }
+    public float Speed { get { return _speed; } set { _speed = value; } }
     public float HalfLengthOfCar { get { return _halfLengthOfCar; } }
+    public bool InGame { get { return _inGame; } set { _inGame = value; } }
 
 
     private Vector3 _forwardRay;
     private int _id;
 
+    private float _maxSpeed;
     private float _halfLengthOfCar;
     private float _halfHeightOfCar;
 
+    private bool _inGame = true;
 
-    public void Init(int id, float speed, float halfLength, float halfHeight)
+    public void Init(int id, float maxSpeed, float speed, float halfLength, float halfHeight)
     {
         _id = id;
+        _maxSpeed = maxSpeed;
         _speed = speed;
         _halfHeightOfCar = halfHeight;
         _halfLengthOfCar = halfLength;
@@ -34,9 +39,12 @@ public class CivilianCar : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckFrontDistance();
-        _speed = Mathf.Clamp(_speed, 1.5f, 4.5f);
-        DoMove(_speed);
+        if (_inGame)
+        {
+            CheckFrontDistance();
+            DoMove();
+        }
+
     }
 
     private void CheckFrontDistance()
@@ -80,16 +88,9 @@ public class CivilianCar : MonoBehaviour
         _speed = value;
     }
 
-    private void DoMove(float speed)
+    private void DoMove()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Vector3 endPoint = new Vector3(_forwardRay.x, _forwardRay.y, _forwardRay.z + _halfLengthOfCar);
-        Gizmos.DrawLine(_forwardRay, endPoint);
-        Gizmos.DrawSphere(endPoint, 0.1f);
+        _speed = Mathf.Clamp(_speed, 0f, _maxSpeed);
+        transform.Translate(transform.forward *  _speed * Time.deltaTime);
     }
 }

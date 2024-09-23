@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class GameStarter : MonoBehaviour
@@ -14,6 +13,7 @@ public class GameStarter : MonoBehaviour
 
     private void Awake()
     {
+        Physics.gravity = Vector3.up * 0.1f;
         InitializeMainTransform();
         Init();
     }
@@ -33,10 +33,6 @@ public class GameStarter : MonoBehaviour
     }
     private void InitializeMainTransform()
     {
-        foreach (Transform child in transform)
-        {
-            if(child.GetComponentInChildren<CarsSpawner>() != null)
-                    _carSpawner = child.GetComponentInChildren<CarsSpawner>();
-        }
+        _carSpawner = GetComponentInChildren<CarsSpawner>();
     }
 }
