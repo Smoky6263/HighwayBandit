@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class LevelTrigger : MonoBehaviour
 {
-    public event Action OnLevelTrigger;
+    public event Action OnLevelTriggerEvent;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponentInChildren<SimpleSampleCharacterControl>() != null)
         {
             Debug.Log("Player Reach Teleport Trigger!");
             Transform parent = GetComponentInParent<Transform>();
-            OnLevelTrigger?.Invoke();
+            OnLevelTriggerEvent?.Invoke();
         }
     }
 }

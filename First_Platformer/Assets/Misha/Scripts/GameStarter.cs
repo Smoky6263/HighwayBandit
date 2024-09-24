@@ -30,6 +30,7 @@ public class GameStarter : MonoBehaviour
 
         _enemyCar.GetComponent<EnemyCar>().Init(_player.transform);
         _carSpawner.Init(_player.transform);
+
     }
     private void InitializeMainTransform()
     {

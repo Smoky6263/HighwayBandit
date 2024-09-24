@@ -12,6 +12,7 @@ public class DistanceToPlayer : MonoBehaviour
 
     private bool _lastCar = false;
     private bool _firstCar = false;
+    private bool _carSrashed = false;
     public bool LastCar { set { _lastCar = value; } }
     public bool FirstCar { set { _firstCar = value; } }
     public Transform PlayerPosition { get { return _playerPosition; } }
@@ -25,6 +26,12 @@ public class DistanceToPlayer : MonoBehaviour
         _frontTeleportDistance = frontDistance;
     }
 
+    public void SetCrashedCar()
+    {
+        _carSrashed = true;
+        StartCoroutine(CarCrashedCoroutine());
+    }
+
     public void SetLastCar()
     {
         _lastCar = true;
@@ -35,6 +42,25 @@ public class DistanceToPlayer : MonoBehaviour
     {
         _firstCar = true;
         StartCoroutine(CheckPlayerInBackCoroutine());
+    }
+
+    private IEnumerator CarCrashedCoroutine()
+    {
+        while (_carSrashed) 
+        {
+            yield return new WaitForFixedUpdate();
+            Vector3 playerPosition = _playerPosition.position;
+            Vector3 carPosition = transform.position;
+            float distance = Vector3.Distance(playerPosition, carPosition);
+            if(distance > _backTeleportDistance)
+            {
+                _carSrashed = false;
+                _lastCar = false; 
+                _firstCar = false;
+                _stripManager.RespawnCarBackToFront(_civilianCar);
+                yield break;
+            }
+        }
     }
 
     private IEnumerator CheckPlayerInFrontCoroutine()
@@ -84,17 +110,20 @@ public class DistanceToPlayer : MonoBehaviour
     {
         StopCoroutine(CheckPlayerInBackCoroutine());
         StopCoroutine(CheckPlayerInFrontCoroutine());
+        StopCoroutine(CarCrashedCoroutine());
     }
 
     private void OnDestroy()
     {
         StopCoroutine(CheckPlayerInBackCoroutine());
+        StopCoroutine(CarCrashedCoroutine());
         StopCoroutine(CheckPlayerInFrontCoroutine());
 
     }
     private void OnApplicationQuit()
     {
         StopCoroutine(CheckPlayerInBackCoroutine());
+        StopCoroutine(CarCrashedCoroutine());
         StopCoroutine(CheckPlayerInFrontCoroutine());
     }
 }

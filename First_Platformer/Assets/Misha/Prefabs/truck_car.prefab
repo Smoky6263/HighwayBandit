@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 1545517038894594814}
   - component: {fileID: 1073425110346583861}
   - component: {fileID: -3547042426656822232}
+  - component: {fileID: 6387940309975752573}
   m_Layer: 0
   m_Name: truck_car
   m_TagString: Untagged
@@ -417,6 +418,7 @@ Transform:
   - {fileID: 5164055134407739711}
   - {fileID: 2991578100426604527}
   - {fileID: 8065272381873129756}
+  - {fileID: 523542834497370029}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5024060920235247177
@@ -456,8 +458,8 @@ MonoBehaviour:
   _rearLightRight: {fileID: 1166895056253247149}
   _speed: 2
   _maxSpeedOffset: 0
-  _distanceToDecreaseSpeed: 8
-  _distanceToIncreaseSpeed: 12
+  _distanceToDecreaseSpeed: 6
+  _distanceToIncreaseSpeed: 10
   _increaseSpeed: 0.7
   _decreaseSpeed: 0.5
 --- !u!114 &1545517038894594814
@@ -497,6 +499,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upForce: 2
+--- !u!114 &6387940309975752573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804642206771154028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a7f9169f479714897f472115cff307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinPrefab: {fileID: 8675075267944032556, guid: 2b113966d4b56b743ba9ab9f807ecee8,
+    type: 3}
+  _coinSpawnPosition: {fileID: 523542834497370029}
+  _spawnChance: 100
 --- !u!1 &6420036074144952898
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +598,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7267114898922808720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523542834497370029}
+  m_Layer: 0
+  m_Name: CoinSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &523542834497370029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7267114898922808720}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.798, z: -0.688}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8668666358998481846}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8173826155103473286
 GameObject:
   m_ObjectHideFlags: 0

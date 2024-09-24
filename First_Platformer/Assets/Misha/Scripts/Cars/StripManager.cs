@@ -57,6 +57,7 @@ public class StripManager : MonoBehaviour
         lastCar.transform.rotation = Quaternion.Euler(Vector3.zero);
         lastCar.InGame = true;
         lastCar.InitializeSpeed(speed);
+        lastCar.GetComponent<CoinController>().RespawnCoin();
         DistanceToPlayer lastElement = _carsArray[0];
 
         for (int i = 0; i < _carsCount - 1; i++)
@@ -96,6 +97,7 @@ public class StripManager : MonoBehaviour
         firstCar.transform.localPosition = targetPosition;
         firstCar.InGame = true;
         firstCar.InitializeSpeed(speed);
+        lastCar.GetComponent<CoinController>().RespawnCoin();
 
         DistanceToPlayer firstElement = _carsArray[_carsArray.Length - 1];
 

@@ -13,6 +13,7 @@ public class CivilianCar : MonoBehaviour, ICar
     [SerializeField] private float _decreaseSpeed;
 
 
+
     public int ID { get { return _id; } }
     public float Speed { get { return _speed; } set { _speed = value; } }
     public float HalfLengthOfCar { get { return _halfLengthOfCar; } }

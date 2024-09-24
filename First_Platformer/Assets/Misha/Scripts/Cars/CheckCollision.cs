@@ -29,8 +29,19 @@ public class CheckCollision : MonoBehaviour
             {
                 if (collider.transform.GetComponent<CivilianCar>() != null)
                 {
-                    collider.transform.GetComponent<CivilianCar>().InGame = false;
-                    collider.transform.GetComponent<CivilianCar>().Speed = 0f;
+                    if (collider.transform.GetComponent<CivilianCar>().InGame)
+                    {
+                        collider.GetComponent<CoinController>().CoinOnCarCrash();
+                        collider.transform.GetComponent<DistanceToPlayer>().SetCrashedCar();
+                        collider.transform.GetComponent<CivilianCar>().InGame = false;
+                        collider.transform.GetComponent<CivilianCar>().Speed = 0f;
+                        if (collider.transform.GetComponent<CrashMe>() == null)
+                        {
+                            CrashMe crashCar = collider.gameObject.AddComponent<CrashMe>();
+                            crashCar.Init(_upForce);
+                        }
+                        transform.GetComponent<StartPlayerCar>().DestroyMe();
+                    }
                 }
             }
 
@@ -39,16 +50,26 @@ public class CheckCollision : MonoBehaviour
                 if (collider.transform.GetComponent<StartPlayerCar>() != null)
                 {
                     collider.transform.GetComponent<StartPlayerCar>().ChangeSpeed(0f);
+                    if (collider.transform.GetComponent<CrashMe>() == null)
+                    {
+                        CrashMe crashCar = collider.gameObject.AddComponent<CrashMe>();
+                        crashCar.Init(_upForce);
+                    }
                 }
                 else if(collider != _myCollider && collider.transform.GetComponent<CivilianCar>() != null)
                 {
-                    collider.transform.GetComponent<CivilianCar>().InGame = false;
-                    collider.transform.GetComponent<CivilianCar>().Speed = 0f;
-                    Transform player = collider.transform.GetComponent<DistanceToPlayer>().PlayerPosition;
-                    if(collider.transform.GetComponent<CrashMe>() == null) 
+                    if (collider.transform.GetComponent<CivilianCar>().InGame)
                     {
-                        CrashMe crashCar = collider.gameObject.AddComponent<CrashMe>();
-                        crashCar.Init(player, _upForce);
+                        collider.GetComponent<CoinController>().CoinOnCarCrash();
+                        collider.transform.GetComponent<DistanceToPlayer>().SetCrashedCar();
+                        collider.transform.GetComponent<CivilianCar>().InGame = false;
+                        collider.transform.GetComponent<CivilianCar>().Speed = 0f;
+
+                        if (collider.transform.GetComponent<CrashMe>() == null) 
+                        {
+                            CrashMe crashCar = collider.gameObject.AddComponent<CrashMe>();
+                            crashCar.Init(_upForce);
+                        }
                     }
                 }
             }
@@ -57,9 +78,12 @@ public class CheckCollision : MonoBehaviour
             //{
             //    if (collider.transform.GetComponent<CivilianCar>() != null)
             //    {
-            //        Debug.Log($"{transform.name} hit: {collider.transform.name}");
-            //        collider.transform.GetComponent<CivilianCar>().ChangeSpeed(0f);
-            //        collider.transform.GetComponent<CivilianCar>().InGame = false;
+            //        if (collider.transform.GetComponent<CivilianCar>().InGame == false) 
+            //        {
+            //            collider.transform.GetComponent<CivilianCar>().ChangeSpeed(0f);
+            //            collider.transform.GetComponent<CivilianCar>().InGame = false;
+            //        }
+            //
             //    }
             //}
         }

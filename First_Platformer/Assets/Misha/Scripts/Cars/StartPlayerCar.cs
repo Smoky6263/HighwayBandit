@@ -31,5 +31,6 @@ public class StartPlayerCar : MonoBehaviour, ICar
     public void ChangeSpeed(float value)
     {
         _speed = value;
-    }
+    }   
+    public void DestroyMe() => Destroy(gameObject, 5f);
 }
