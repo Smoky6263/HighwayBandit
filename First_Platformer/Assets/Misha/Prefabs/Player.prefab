@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 3721721014206299207}
   - component: {fileID: -1076803164247307311}
   - component: {fileID: 6693695468993069976}
+  - component: {fileID: 3866979733170833342}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -428,6 +429,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9085994cbb6fb1498b6c24d1a37572c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3866979733170833342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3142811720079799082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 641fd2df46cef1f4aab26e3bc4d1a7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3299545216038869815
@@ -1158,6 +1171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5135949500710267005}
+  - component: {fileID: 1546593606524024658}
   m_Layer: 0
   m_Name: basic_rig
   m_TagString: Untagged
@@ -1181,6 +1195,33 @@ Transform:
   - {fileID: 7005169360401464816}
   m_Father: {fileID: 3518246994717548452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1546593606524024658
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8944025692038101370}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8971825222792863193
 GameObject:
   m_ObjectHideFlags: 0

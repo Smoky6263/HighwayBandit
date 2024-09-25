@@ -84,11 +84,6 @@ public class CivilianCar : MonoBehaviour, ICar
         _speed += value * Time.deltaTime;
     }
 
-    public void InitializeSpeed(float value)
-    {
-        _speed = value;
-    }
-
     private void DoMove()
     {
         _speed = Mathf.Clamp(_speed, 0f, _maxSpeed);

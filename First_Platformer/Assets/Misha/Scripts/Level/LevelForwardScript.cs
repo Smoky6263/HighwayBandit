@@ -20,4 +20,17 @@ public class LevelForwardScript : MonoBehaviour
         Vector3 targetPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + _stepLength * _stepsCount);
         transform.localPosition = targetPosition;
     }
+
+    private void OnDisable()
+    {
+        _onLevelTrigger.OnLevelTriggerEvent -= MoveLevel;
+    }
+    private void OnDestroy()
+    {
+        _onLevelTrigger.OnLevelTriggerEvent -= MoveLevel;
+    }
+    private void OnApplicationQuit()
+    {
+        _onLevelTrigger.OnLevelTriggerEvent -= MoveLevel;
+    }
 }

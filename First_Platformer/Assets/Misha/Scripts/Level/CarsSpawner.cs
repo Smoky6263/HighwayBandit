@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class CarsSpawner : MonoBehaviour
 {
+    [SerializeField] private GameObject _levelPassedPanel;
+
     [SerializeField] private List<Transform> _carSpawnPosition = new List<Transform>();
-    [SerializeField] private List<GameObject> _carPrefab = new List<GameObject>();
+    [SerializeField] private List<GameObject> _carPrefabs = new List<GameObject>();
+    [SerializeField] private GameObject _delorianPrefab;
     [SerializeField] private int _carsCount;
     [SerializeField] private float _carsSpeed;
     [SerializeField, Range(-2f, 2f)] private float _randomizeCarsSpeed;
@@ -14,14 +17,29 @@ public class CarsSpawner : MonoBehaviour
 
     private Transform _player;
 
-    public List<GameObject> CarPrefab { get { return _carPrefab; } }
-
     public void Init(Transform player)
     {
+        PlayerWallet.OnDelorianSpawnEvent += SpawnDelorian;
         _player = player;
         SpawnCars();
     }
 
+    private void SpawnDelorian()
+    {
+        float halfLength = _delorianPrefab.GetComponentInChildren<Renderer>().bounds.size.z / 2;
+        float halfHeight = _delorianPrefab.GetComponentInChildren<Renderer>().bounds.size.y / 2;
+        float randomizeDistanceBetweenCars = Random.Range(_minDistance, _maxDistance);
+        int randomStrip = Random.Range(0, _carSpawnPosition.Count);
+        float firstCarSpeed = _carSpawnPosition[randomStrip].GetComponent<StripManager>().ReturnFirstCarSpeed();
+        Vector3 firstCarPosition = _carSpawnPosition[randomStrip].GetComponent<StripManager>().ReturnFirstCarPosition();
+        Vector3 offsetPosition = new Vector3(0f ,0f, halfLength + 4f);
+        GameObject delorian = Instantiate(_delorianPrefab, firstCarPosition + offsetPosition, Quaternion.identity);
+        DelorianCar civilianDelorian = delorian.GetComponent<DelorianCar>();
+        PlayerOnLevelPassed levelPassed = delorian.GetComponentInChildren<PlayerOnLevelPassed>();
+        levelPassed.Init(_levelPassedPanel);
+        civilianDelorian.Init(firstCarSpeed, halfLength, halfHeight);
+        Debug.Log($"Level Passed, i spawn {delorian.name}");
+    }
 
     private void SpawnCars()
     {
@@ -47,7 +65,7 @@ public class CarsSpawner : MonoBehaviour
             for (int id = 0; id < carPerStrip; id++)
             {
                 CreateNewCar(out randomizeCar, out speed, out randomizeDistanceBetweenCars, out halfLength, out halfHeight);
-                GameObject car = Instantiate(_carPrefab[randomizeCar], currentSpawnPosition + nextSpawnPosition, Quaternion.identity, _carSpawnPosition[strip]);
+                GameObject car = Instantiate(_carPrefabs[randomizeCar], currentSpawnPosition + nextSpawnPosition, Quaternion.identity, _carSpawnPosition[strip]);
                 
                 CivilianCar civilianCar = car.GetComponent<CivilianCar>();
                 civilianCar.Init(id, _carsSpeed, speed, halfLength, halfHeight);
@@ -64,17 +82,33 @@ public class CarsSpawner : MonoBehaviour
 
     private void CreateNewCar(out int randomizeCar, out float speed, out float randomizeDistanceBetweenCars, out float halfLength, out float halfHeight)
     {
-        randomizeCar = Random.Range(0, _carPrefab.Count);
+        randomizeCar = Random.Range(0, _carPrefabs.Count);
         randomizeDistanceBetweenCars = Random.Range(_minDistance, _maxDistance);
         speed = _carsSpeed + Random.Range(-_randomizeCarsSpeed, _randomizeCarsSpeed);
-        halfLength = _carPrefab[randomizeCar].GetComponentInChildren<Renderer>().bounds.size.z / 2;
-        halfHeight = _carPrefab[randomizeCar].GetComponentInChildren<Renderer>().bounds.size.y / 2;
+        halfLength = _carPrefabs[randomizeCar].GetComponentInChildren<Renderer>().bounds.size.z / 2;
+        halfHeight = _carPrefabs[randomizeCar].GetComponentInChildren<Renderer>().bounds.size.y / 2;
     }
     public void CreateNewCar(out float halfLength,  out float speed, out float randomizeDistanceBetweenCars)
     {
-        int randomizeCar = Random.Range(0, _carPrefab.Count);
+        int randomizeCar = Random.Range(0, _carPrefabs.Count);
         randomizeDistanceBetweenCars = Random.Range(_minDistance, _maxDistance);
-        halfLength = _carPrefab[randomizeCar].GetComponentInChildren<Renderer>().bounds.size.z / 2;
+        halfLength = _carPrefabs[randomizeCar].GetComponentInChildren<Renderer>().bounds.size.z / 2;
         speed = _carsSpeed + Random.Range(-_randomizeCarsSpeed, _randomizeCarsSpeed);
+    }
+
+    private void OnDestroy()
+    {
+        PlayerWallet.OnDelorianSpawnEvent -= SpawnDelorian;
+
+    }
+    private void OnDisable()
+    {
+        PlayerWallet.OnDelorianSpawnEvent -= SpawnDelorian;
+
+    }
+    private void OnApplicationQuit()
+    {
+        PlayerWallet.OnDelorianSpawnEvent -= SpawnDelorian;
+
     }
 }

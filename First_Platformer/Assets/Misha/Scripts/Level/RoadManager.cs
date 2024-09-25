@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RoadManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _gameOverPanel;
 
     [SerializeField] private List<GameObject> _roadSamples;
     [SerializeField] private float _roadSpeed;
@@ -42,8 +43,11 @@ public class RoadManager : MonoBehaviour
             GameObject road = Instantiate(roadSamples[Random.Range(0, roadSamples.Count)], transform.position + targetPosition, Quaternion.identity, transform) ;
             RespawnRoad initRoad = road.GetComponent<RespawnRoad>();
             MovableObject movableObject = road.GetComponent<MovableObject>();
+            PlayerOnGameOver playerOnGameOver = road.GetComponent<PlayerOnGameOver>();
+
             movableObject.Init(_roadSpeed);
             initRoad.Init(id, _sampleLength, _samplesCount, _roadSpeed);
+            playerOnGameOver.Init(_gameOverPanel);
             _roadSamplesList.Add(road);
         }
     }

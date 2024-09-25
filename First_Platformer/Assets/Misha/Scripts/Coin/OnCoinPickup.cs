@@ -15,6 +15,5 @@ public class OnCoinPickup : MonoBehaviour
             PlayerWallet.AddCoin();
             GetComponentInParent<CoinController>().CoinOnCarCrash();
         }
-
     }
 }

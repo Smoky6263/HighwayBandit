@@ -32,4 +32,6 @@ public class CameraScript : MonoBehaviour
 
         transform.LookAt(_player.transform.position);
     }
+
+
 }

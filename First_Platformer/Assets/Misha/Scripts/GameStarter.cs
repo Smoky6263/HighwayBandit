@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class GameStarter : MonoBehaviour
 {
+    [SerializeField, Range(0, 500)] private int _coinsCountToWin;
+    [SerializeField] private GameObject _gameOverPanel, _winPanel;
+
     [SerializeField] private GameObject _playerPrefab, _startPlayerCarPrefab, _enemyCarPrefab;
     [SerializeField] private Transform _startPlayerCarSpawnPos, _enemyCarSpawnPos;
     
@@ -13,6 +16,8 @@ public class GameStarter : MonoBehaviour
 
     private void Awake()
     {
+        PlayerWallet.CoinsCount = 0;
+        PlayerWallet.CoinsCountToEndLevel = _coinsCountToWin;
         Physics.gravity = Vector3.up * 0.1f;
         InitializeMainTransform();
         Init();
