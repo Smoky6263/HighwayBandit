@@ -4,6 +4,7 @@ using UnityEngine;
 public class CoinPhysics : MonoBehaviour
 {
     [SerializeField] private float _upForce;
+    [SerializeField] private float _horizontalForce;
 
     private Rigidbody _rigidbody;
     private MeshCollider _meshCollider;
@@ -18,14 +19,14 @@ public class CoinPhysics : MonoBehaviour
         _rigidbody.isKinematic = true;
     }
 
-    private void StartAddForceCoroutine() => StartCoroutine(AddForceCoroutine());
-    private void StopAddForceCoroutine() => StopCoroutine(AddForceCoroutine());
+    private void StartAddForceCoroutine(Vector3 direction) => StartCoroutine(AddForceCoroutine(direction));
+    private void StopAddForceCoroutine() => StopCoroutine("AddForceCoroutine");
 
-    private IEnumerator AddForceCoroutine()
+    private IEnumerator AddForceCoroutine(Vector3 direction)
     {
         while (_rigidbody.isKinematic == false)
         {
-            _rigidbody.AddForce(new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 0f)) * _upForce, ForceMode.VelocityChange);
+            _rigidbody.AddForce(direction.x * _horizontalForce, 1f * _upForce, direction.z * _horizontalForce, ForceMode.VelocityChange);
             _rigidbody.AddTorque(new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f)), ForceMode.VelocityChange);
 
             if (_rigidbody.isKinematic == false)
@@ -33,12 +34,12 @@ public class CoinPhysics : MonoBehaviour
         }
     }
 
-    public void TurnOnPhysics()
+    public void TurnOnPhysics(Vector3 direction)
     {
         _meshCollider.enabled = false;
         _rigidbody.useGravity = true;
         _rigidbody.isKinematic = false;
-        StartAddForceCoroutine();
+        StartAddForceCoroutine(direction);
     }
     public void TurnOffPhysics()
     {
@@ -51,16 +52,16 @@ public class CoinPhysics : MonoBehaviour
 
     private void OnDisable()
     {
-        StopCoroutine(AddForceCoroutine());
+        StopCoroutine("AddForceCoroutine");
     }
 
     private void OnDestroy()
     {
-        StopCoroutine(AddForceCoroutine());
+        StopCoroutine("AddForceCoroutine");
     }
 
     private void OnApplicationQuit()
     {
-        StopCoroutine(AddForceCoroutine());
+        StopCoroutine("AddForceCoroutine");
     }
 }

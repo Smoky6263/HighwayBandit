@@ -50,21 +50,21 @@ public class PlayerOnJump : MonoBehaviour
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
-    public void CancelCoroutine(string coroutineName)
+    public void CancelOnJumpCoroutine()
     {
-        StopCoroutine(coroutineName);
+        StopCoroutine(_onJumpCoroutine);
     }
 
     private void OnDestroy()
     {
-        CancelCoroutine(_onJumpCoroutine);
+        CancelOnJumpCoroutine();
     }
     private void OnDisable()
     {
-        CancelCoroutine(_onJumpCoroutine);
+        CancelOnJumpCoroutine();
     }
     private void OnApplicationQuit()
     {
-        CancelCoroutine(_onJumpCoroutine);
+        CancelOnJumpCoroutine();
     }
 }

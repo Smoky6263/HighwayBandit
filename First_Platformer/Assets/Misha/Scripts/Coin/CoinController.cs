@@ -49,14 +49,14 @@ public class CoinController : MonoBehaviour
             _coinSpawnPosition.gameObject.SetActive(true);
     }
 
-    public void CoinOnCarCrash()
+    public void CoinOnCarCrash(Vector3 direction)
     {
         if (_coinSpawnPosition.gameObject.activeInHierarchy)
         {
             _boxCollider.enabled = false;
             _coinAnimator.enabled = false;
             _coinObject.transform.SetParent(null);
-            _addForceToCoin.TurnOnPhysics();
+            _addForceToCoin.TurnOnPhysics(direction);
         }
     }
 

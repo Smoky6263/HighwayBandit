@@ -13,7 +13,7 @@ public class OnCoinPickup : MonoBehaviour
         if (collider.GetComponent<SimpleSampleCharacterControl>() != null)
         {
             PlayerWallet.AddCoin();
-            GetComponentInParent<CoinController>().CoinOnCarCrash();
+            GetComponentInParent<CoinController>().CoinOnCarCrash(collider.transform.forward);
         }
     }
 }

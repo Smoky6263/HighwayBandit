@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 4c12da8dc5dced74e838120da11725a0, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_Sun: {fileID: 410087040}
+  m_IndirectSpecularColor: {r: 0.5590147, g: 0.8095578, b: 0.99108803, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carRespawnBackDistance: 20
-  _carRespawnFrontDistance: 100
+  _carRespawnFrontDistance: 150
 --- !u!1 &98698175
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +467,6 @@ GameObject:
   m_Component:
   - component: {fileID: 330585546}
   - component: {fileID: 330585545}
-  - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   m_Layer: 0
@@ -477,14 +476,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &330585544
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
 --- !u!20 &330585545
 Camera:
   m_ObjectHideFlags: 0
@@ -1129,7 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carRespawnBackDistance: 20
-  _carRespawnFrontDistance: 100
+  _carRespawnFrontDistance: 150
 --- !u!1 &615530955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,7 +2242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carRespawnBackDistance: 20
-  _carRespawnFrontDistance: 100
+  _carRespawnFrontDistance: 150
 --- !u!1 &1317176484
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,7 +2342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carRespawnBackDistance: 20
-  _carRespawnFrontDistance: 100
+  _carRespawnFrontDistance: 150
 --- !u!1 &1423380414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2472,7 +2463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carRespawnBackDistance: 20
-  _carRespawnFrontDistance: 100
+  _carRespawnFrontDistance: 150
 --- !u!1 &1503167336
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,7 +2950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3da02ca01492a46919800ee4b8fed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinsCountToWin: 50
+  _coinsCountToWin: 20
   _gameOverPanel: {fileID: 0}
   _winPanel: {fileID: 134973508}
   _playerPrefab: {fileID: 3142811720079799082, guid: 3e00c3dde286cd9479fb0935dd193824,
@@ -3016,7 +3007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carRespawnBackDistance: 20
-  _carRespawnFrontDistance: 100
+  _carRespawnFrontDistance: 150
 --- !u!1 &2031181740
 GameObject:
   m_ObjectHideFlags: 0

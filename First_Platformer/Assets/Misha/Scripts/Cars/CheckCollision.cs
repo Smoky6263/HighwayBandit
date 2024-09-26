@@ -59,7 +59,7 @@ public class CheckCollision : MonoBehaviour
             {
                 if (collider.transform.GetComponent<CivilianCar>().InGame)
                 {
-                    collider.GetComponent<CoinController>().CoinOnCarCrash();
+                    collider.GetComponent<CoinController>().CoinOnCarCrash(transform.forward);
                     collider.transform.GetComponent<DistanceToPlayer>().SetCrashedCar();
                     collider.transform.GetComponent<CivilianCar>().InGame = false;
                     collider.transform.GetComponent<CivilianCar>().Speed = 0f;
@@ -93,7 +93,7 @@ public class CheckCollision : MonoBehaviour
         {
             if (collider.transform.GetComponent<CivilianCar>().InGame)
             {
-                collider.GetComponent<CoinController>().CoinOnCarCrash();
+                collider.GetComponent<CoinController>().CoinOnCarCrash(transform.forward);
                 collider.transform.GetComponent<DistanceToPlayer>().SetCrashedCar();
                 collider.transform.GetComponent<CivilianCar>().InGame = false;
                 collider.transform.GetComponent<CivilianCar>().Speed = 0f;
