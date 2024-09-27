@@ -27,19 +27,6 @@ public class CheckCollision : MonoBehaviour
         {
             StartCarOnCollision(collider);
             CivilianCarOnCollision(collider);
-                        
-            //if(transform.GetComponent<EnemyCar>() != null)
-            //{
-            //    if (collider.transform.GetComponent<CivilianCar>() != null)
-            //    {
-            //        if (collider.transform.GetComponent<CivilianCar>().InGame == false) 
-            //        {
-            //            collider.transform.GetComponent<CivilianCar>().ChangeSpeed(0f);
-            //            collider.transform.GetComponent<CivilianCar>().InGame = false;
-            //        }
-            //
-            //    }
-            //}
         }
     }
 

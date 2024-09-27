@@ -43,11 +43,11 @@ public class RoadManager : MonoBehaviour
             GameObject road = Instantiate(roadSamples[Random.Range(0, roadSamples.Count)], transform.position + targetPosition, Quaternion.identity, transform) ;
             RespawnRoad initRoad = road.GetComponent<RespawnRoad>();
             MovableObject movableObject = road.GetComponent<MovableObject>();
-            PlayerOnGameOver playerOnGameOver = road.GetComponent<PlayerOnGameOver>();
+            PlayerOnGroundDefeat playerOnGroundDefeat = road.GetComponent<PlayerOnGroundDefeat>();
 
             movableObject.Init(_roadSpeed);
             initRoad.Init(id, _sampleLength, _samplesCount, _roadSpeed);
-            playerOnGameOver.Init(_gameOverPanel);
+            playerOnGroundDefeat.Init(_gameOverPanel);
             _roadSamplesList.Add(road);
         }
     }
@@ -56,7 +56,7 @@ public class RoadManager : MonoBehaviour
         Transform teleport = Instantiate(teleportTrigger.transform, transform.position, Quaternion.identity, transform);
         LevelTrigger levelTrigger = teleport.GetComponent<LevelTrigger>();
 
-        teleport.transform.localScale = new Vector3(36f, 10f, 36f);
+        teleport.transform.localScale = new Vector3(36f, 20f, 36f);
         Vector3 targetPosition = new Vector3(0f, 2.026779f + teleport.transform.localScale.y / 2, transform.position.z + _sampleLength * _forwardSpawnOffset);
         teleport.localPosition = targetPosition;
         return levelTrigger;

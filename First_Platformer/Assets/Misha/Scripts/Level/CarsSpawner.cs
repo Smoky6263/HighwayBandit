@@ -19,7 +19,7 @@ public class CarsSpawner : MonoBehaviour
 
     public void Init(Transform player)
     {
-        PlayerWallet.OnDelorianSpawnEvent += SpawnDelorian;
+        LevelFinisher.OnVictoryCarSpawnEvent += SpawnDelorian;
         _player = player;
         SpawnCars();
     }
@@ -35,7 +35,7 @@ public class CarsSpawner : MonoBehaviour
         Vector3 offsetPosition = new Vector3(0f ,0f, halfLength + 4f);
         GameObject delorian = Instantiate(_delorianPrefab, firstCarPosition + offsetPosition, Quaternion.identity);
         DelorianCar civilianDelorian = delorian.GetComponent<DelorianCar>();
-        PlayerOnLevelPassed levelPassed = delorian.GetComponentInChildren<PlayerOnLevelPassed>();
+        PlayerReachVictoryCar levelPassed = delorian.GetComponentInChildren<PlayerReachVictoryCar>();
         levelPassed.Init(_levelPassedPanel);
         civilianDelorian.Init(firstCarSpeed, halfLength, halfHeight);
         Debug.Log($"Level Passed, i spawn {delorian.name}");
@@ -96,19 +96,7 @@ public class CarsSpawner : MonoBehaviour
         speed = _carsSpeed + Random.Range(-_randomizeCarsSpeed, _randomizeCarsSpeed);
     }
 
-    private void OnDestroy()
-    {
-        PlayerWallet.OnDelorianSpawnEvent -= SpawnDelorian;
-
-    }
-    private void OnDisable()
-    {
-        PlayerWallet.OnDelorianSpawnEvent -= SpawnDelorian;
-
-    }
-    private void OnApplicationQuit()
-    {
-        PlayerWallet.OnDelorianSpawnEvent -= SpawnDelorian;
-
-    }
+    private void OnDestroy() => LevelFinisher.OnVictoryCarSpawnEvent -= SpawnDelorian;
+    private void OnDisable() => LevelFinisher.OnVictoryCarSpawnEvent -= SpawnDelorian;
+    private void OnApplicationQuit() => LevelFinisher.OnVictoryCarSpawnEvent -= SpawnDelorian;
 }

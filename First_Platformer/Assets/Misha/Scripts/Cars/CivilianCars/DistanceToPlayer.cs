@@ -22,7 +22,8 @@ public class DistanceToPlayer : MonoBehaviour
 
     public void Init(StripManager stripManager, Transform player, float backDistance, float frontDistance)
     {
-        PlayerWallet.OnDelorianSpawnEvent += StopCheckingDistance;
+        LevelFinisher.OnVictoryCarSpawnEvent += StopCheckingDistance;
+        LevelFinisher.PlayerDefeatEvent += StopCheckingDistance;
         _civilianCar = GetComponent<CivilianCar>();
         _playerPosition = player;
         _stripManager = stripManager;
@@ -111,9 +112,7 @@ public class DistanceToPlayer : MonoBehaviour
     {
         _gameOver = true;
 
-        StopCoroutine(CheckPlayerInBackCoroutine());
-        StopCoroutine(CarCrashedCoroutine());
-        StopCoroutine(CheckPlayerInFrontCoroutine());
+        StopAllCoroutines();
         _lastCar = false;
         _firstCar = false;
         _carSrashed = false;
@@ -133,24 +132,21 @@ public class DistanceToPlayer : MonoBehaviour
 
     private void OnDisable()
     {
-        StopCoroutine(CheckPlayerInBackCoroutine());
-        StopCoroutine(CheckPlayerInFrontCoroutine());
-        StopCoroutine(CarCrashedCoroutine());
-        PlayerWallet.OnDelorianSpawnEvent -= StopCheckingDistance;
+        StopAllCoroutines();
+        LevelFinisher.OnVictoryCarSpawnEvent -= StopCheckingDistance;
+        LevelFinisher.PlayerDefeatEvent -= StopCheckingDistance;
     }
 
     private void OnDestroy()
     {
-        StopCoroutine(CheckPlayerInBackCoroutine());
-        StopCoroutine(CarCrashedCoroutine());
-        StopCoroutine(CheckPlayerInFrontCoroutine());
-        PlayerWallet.OnDelorianSpawnEvent -= StopCheckingDistance;
+        StopAllCoroutines();
+        LevelFinisher.OnVictoryCarSpawnEvent -= StopCheckingDistance;
+        LevelFinisher.PlayerDefeatEvent -= StopCheckingDistance;
     }
     private void OnApplicationQuit()
     {
-        StopCoroutine(CheckPlayerInBackCoroutine());
-        StopCoroutine(CarCrashedCoroutine());
-        StopCoroutine(CheckPlayerInFrontCoroutine());
-        PlayerWallet.OnDelorianSpawnEvent -= StopCheckingDistance;
+        StopAllCoroutines();
+        LevelFinisher.OnVictoryCarSpawnEvent -= StopCheckingDistance;
+        LevelFinisher.PlayerDefeatEvent -= StopCheckingDistance;
     }
 }

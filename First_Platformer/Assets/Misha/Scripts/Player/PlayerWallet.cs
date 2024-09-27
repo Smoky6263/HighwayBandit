@@ -3,7 +3,7 @@ using System;
 public static class PlayerWallet
 {
     public static event Action<int> OnCoinChangeEvent;
-    public static event Action OnDelorianSpawnEvent;
+    //DistanceToPlayer, CarSpawner
 
     private static int _coinsCount = 0;
     private static int _coinsCountToEndLevel = 0;
@@ -16,6 +16,6 @@ public static class PlayerWallet
         OnCoinChangeEvent?.Invoke(_coinsCount);
 
         if (_coinsCount == _coinsCountToEndLevel)
-            OnDelorianSpawnEvent?.Invoke();
+            LevelFinisher.LevelPassed();
     }
 }

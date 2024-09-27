@@ -115,7 +115,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8598488797535960845}
   - component: {fileID: 5867186857348231812}
-  - component: {fileID: 571847851563564400}
   - component: {fileID: 6812832525486094561}
   m_Layer: 0
   m_Name: Hummer
@@ -171,18 +170,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
---- !u!114 &571847851563564400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2385721224405709092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41354995e9e1be44fbb069ecaac03173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6812832525486094561
 MonoBehaviour:
   m_ObjectHideFlags: 0

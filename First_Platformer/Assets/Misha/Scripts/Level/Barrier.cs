@@ -6,9 +6,9 @@ public class Barrier : MonoBehaviour
     {
         if(other.GetComponent<PlayerOnJump>() != null)
         {
-            other.GetComponent<PlayerOnJump>().CancelOnJumpCoroutine();
             other.transform.SetParent(null);
-            Camera.main.transform.SetParent(null);
+            Camera.main.GetComponent<CameraScript>().ControlMode = CameraControllMode.GameOver;
+            Camera.main.GetComponent<CameraScript>().ResetCamera();
         }
     }
 }

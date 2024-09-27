@@ -4,7 +4,7 @@ public class LevelForwardScript : MonoBehaviour
 {
     [SerializeField] private int _stepsCount;
 
-    public LevelTrigger _onLevelTrigger;
+    private LevelTrigger _onLevelTrigger;
 
     private float _stepLength;
 

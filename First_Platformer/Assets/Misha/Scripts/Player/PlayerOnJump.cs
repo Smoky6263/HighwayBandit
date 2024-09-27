@@ -7,10 +7,6 @@ public class PlayerOnJump : MonoBehaviour
 
     public const string _onJumpCoroutine = "PlayerOnJumpCoroutine";
 
-    private void Awake()
-    {
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         _onJump = false;
