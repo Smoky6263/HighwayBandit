@@ -9,7 +9,4 @@ This project using URP and Reqiure next assets:
 
 Also next packages:
 1) TextMeshPRO
-2) Cinemachine
-3) Timeline
-4) Post Processing
-5) 2d Sprite
+2) 2d Sprite
