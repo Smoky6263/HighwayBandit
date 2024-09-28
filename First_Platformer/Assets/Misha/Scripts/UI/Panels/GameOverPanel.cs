@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -18,10 +19,14 @@ public class GameOverPanel : MonoBehaviour
     [SerializeField] private float[] _buttonDelay;
     [SerializeField] private float[] _buttonFrom, _buttonTo;
 
+    [Header("Элемент BG для перехода в темный экран")]
+    [SerializeField] private RectTransform _BG;
+
     private void Awake()
     {
         _group = GetComponent<CanvasGroup>();
         _group.alpha = 0f;
+        _BG.gameObject.SetActive(false);
     }
     private void OnEnable()
     {
@@ -47,5 +52,15 @@ public class GameOverPanel : MonoBehaviour
             
             LeanTween.moveY(_buttons[i], _buttonTo[i], _buttonTime).setDelay(_buttonDelay[i]).setEaseOutSine();
         }
+    }
+    public void FadeInAndRestartLevel() => StartCoroutine(FadeInCoroutine());
+
+    private IEnumerator FadeInCoroutine()
+    {
+        _BG.gameObject.SetActive(true);
+        LeanTween.alpha(_BG, 1f, _alphaTime).setEaseOutSine();
+        yield return new WaitForSeconds(_alphaTime);
+        GetComponentInChildren<ButtonsEvents>().RestartCurrentLevel();
+        yield break;
     }
 }

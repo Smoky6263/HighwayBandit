@@ -15,6 +15,7 @@ public class RespawnRoad : MonoBehaviour
 
     private bool _itsFirstRespawn = true;
 
+
     public void Init(int id, float sampleLength, int samplesCount, float speed)
     {
         _id = id;

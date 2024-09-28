@@ -71,7 +71,7 @@ public class CameraScript : MonoBehaviour
             yield return new WaitForFixedUpdate();
             time -= Time.deltaTime;
 
-            transform.position = Vector3.Lerp(transform.position, new Vector3(0f, transform.position.y, transform.position.z), _cameraPositionSpeed);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(0f, 12f, transform.position.z), _cameraPositionSpeed);
             
             Vector3 direction = new Vector3(0f, -7.51f, 7.53f);
             Quaternion targetRotation = Quaternion.LookRotation(direction);

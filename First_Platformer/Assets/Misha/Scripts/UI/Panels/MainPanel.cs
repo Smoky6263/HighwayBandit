@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class MainPanel : MonoBehaviour
 {
+    [Header("Картинка BG")]
     [SerializeField] private Image _fadeBG;
     [SerializeField] private float t_fadeTime;
 
 
+    [Header("Текст с названием игры")]
     [SerializeField] private GameObject _highwayText;
     [SerializeField] private GameObject _banditText;
     [SerializeField] private float x_highwayText = 40f;
@@ -18,16 +20,22 @@ public class MainPanel : MonoBehaviour
     [SerializeField] private float t_banditText;
     [SerializeField] private float d_banditText;
 
-    [SerializeField] private List<GameObject> _buttons = new List<GameObject>();
-    [SerializeField] private List<float> _buttonsDelay = new List<float>();
+    [Header("Основные кнопки")]
+    [SerializeField] private GameObject[] _buttons;
+    [SerializeField] private float[] _buttonsDelay;
     [SerializeField] private float _buttonsTargetPosition = 480f;
 
+    [Header("Текст с названием игры")]
+    [SerializeField] private GameObject[] _chooseArrow;
+    [SerializeField] private float[] _chooseDelay;
+    [SerializeField] private float _chooseArrowTargetPosition;
 
     private void Start()
     {
         DoFadeOut();
         DoNameOfGameOut();
         DoButtonsOut();
+        DoChooseArrowOut();
     }
 
 
@@ -48,9 +56,17 @@ public class MainPanel : MonoBehaviour
     }
     private void DoButtonsOut()
     {
-        for (int i = 0; i < _buttons.Count; i++)
+        for (int i = 0; i < _buttons.Length; i++)
         {
             LeanTween.moveLocalX(_buttons[i].gameObject, _buttonsTargetPosition, t_highwayText).setDelay(_buttonsDelay[i]).setEase(LeanTweenType.easeOutBack);
+        }
+    }
+
+    private void DoChooseArrowOut()
+    {
+        for (int i = 0; i < _chooseArrow.Length; i++)
+        {
+            LeanTween.moveLocalY(_chooseArrow[i].gameObject, _chooseArrowTargetPosition, t_highwayText).setDelay(_chooseDelay[i]).setEase(LeanTweenType.easeOutBack);
         }
     }
 

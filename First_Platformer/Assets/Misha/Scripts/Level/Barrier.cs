@@ -1,14 +1,41 @@
 using UnityEngine;
 
-public class Barrier : MonoBehaviour
+public class Barrier : MonoBehaviour, ICar
 {
-    private void OnTriggerEnter(Collider other)
+    private BarrierRespawner _barrierRespawner;
+    private Transform _respawnPosition;
+    private float _respawnDistance;
+    private float _speed;
+
+    private Vector3 _lastPosition;
+    private float _totalDistance;
+
+
+    public void Init(Transform player, Transform respawnPosition, float respawnDistance, float speed)
     {
-        if(other.GetComponent<PlayerOnJump>() != null)
+        _speed = speed;
+        _respawnPosition = respawnPosition;
+        _respawnDistance = respawnDistance;
+        _lastPosition = transform.position;
+        _totalDistance = 0f;
+        _barrierRespawner = GetComponentInChildren<BarrierRespawner>();
+        _barrierRespawner.Init(player);
+    }
+    public void ChangeSpeed(float value) => _speed = value;
+
+    private void FixedUpdate()
+    {
+        transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+
+        float distance = Vector3.Distance(transform.position, _lastPosition);
+        _totalDistance += distance;
+        _lastPosition = transform.position;
+
+        if(_totalDistance > _respawnDistance) 
         {
-            other.transform.SetParent(null);
-            Camera.main.GetComponent<CameraScript>().ControlMode = CameraControllMode.GameOver;
-            Camera.main.GetComponent<CameraScript>().ResetCamera();
+            transform.position = _respawnPosition.position;
+            _barrierRespawner.ResetBarrier();
+            _totalDistance = 0f;
         }
     }
 }

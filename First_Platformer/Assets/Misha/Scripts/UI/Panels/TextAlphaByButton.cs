@@ -9,10 +9,10 @@ public class TextAlphaByButton : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _text;
     private void Start()
     {
-        StartCoroutine(SetAlpha());
+        StartCoroutine(SetTextAlpha());
     }
 
-    private IEnumerator SetAlpha()
+    private IEnumerator SetTextAlpha()
     {
         float time = 2f;
 

@@ -4,7 +4,7 @@ public class MovableObject : MonoBehaviour
 {
     private float _speed;    
 
-    public void Init(float speed)
+    public virtual void Init(float speed)
     {
         _speed = speed;
     }

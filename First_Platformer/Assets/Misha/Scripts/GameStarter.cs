@@ -1,3 +1,6 @@
+using Supercyan.FreeSample;
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameStarter : MonoBehaviour
@@ -11,6 +14,7 @@ public class GameStarter : MonoBehaviour
     private GameObject _player, _startPlayerCar;
 
     private CarsSpawner _carSpawner;
+    private RoadManager _roadManager;
 
     private void Awake()
     {
@@ -28,12 +32,25 @@ public class GameStarter : MonoBehaviour
         Vector3 playerSpawnYoffset = new Vector3(0f, _spawnYoffset, 0f);
         _player = Instantiate(_playerPrefab, _startPlayerCarSpawnPos.transform.position + playerSpawnYoffset, Quaternion.identity);
         _player.transform.SetParent(_startPlayerCar.transform);
+        StartCoroutine(StartGame());
 
         _carSpawner.Init(_player.transform);
-
+        _roadManager.Init(_player.transform);
     }
+
+    private IEnumerator StartGame()
+    {
+        _player.GetComponent<SimpleSampleCharacterControl>().enabled = false;
+
+        yield return new WaitForSeconds(5f);
+
+        _player.GetComponent<SimpleSampleCharacterControl>().enabled = true;
+        yield break;
+    }
+
     private void InitializeMainTransform()
     {
         _carSpawner = GetComponentInChildren<CarsSpawner>();
+        _roadManager = GetComponentInChildren<RoadManager>();
     }
 }

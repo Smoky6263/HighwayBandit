@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class RoadManager : MonoBehaviour
 {
+    [Header("Интерфейс, когда игрок проиграл")]
     [SerializeField] private GameObject _gameOverPanel;
 
+    [Header("Данные об уровне")]
     [SerializeField] private List<GameObject> _roadSamples;
     [SerializeField] private float _roadSpeed;
     [SerializeField] private int _samplesCount;
@@ -13,20 +15,22 @@ public class RoadManager : MonoBehaviour
     [SerializeField] private int _forwardSpawnOffset;
     [SerializeField] private GameObject _teleportTrigger;
 
+    [Header("Препятсвие для игрока")]
+    [SerializeField] private GameObject _BarrierPrefab;
+    [SerializeField] private Transform _barrierSpawner;
+    [SerializeField] private float _barrierOffset;
+
 
     private List<GameObject> _roadSamplesList = new List<GameObject>();
     private LevelForwardScript _forwardScript;
     private LevelTrigger _levelTrigger;
+    private Transform _player;
 
-    private void Start()
-    {
-        Init();
-    }
-
-    private void Init()
+    public void Init(Transform player)
     {
         Mathf.Clamp(_forwardSpawnOffset, 0, _samplesCount);
         SpawnRoads(_roadSamples);
+        SpawnBarrier();
         _levelTrigger = SpawnTeleportTrigger(_teleportTrigger);
 
         _forwardScript = GetComponent<LevelForwardScript>();
@@ -51,6 +55,15 @@ public class RoadManager : MonoBehaviour
             _roadSamplesList.Add(road);
         }
     }
+
+    private void SpawnBarrier()
+    {
+        Vector3 spawnerTargetPosition = new Vector3(0f, 0f, _sampleLength * _samplesCount + _barrierOffset);
+        _barrierSpawner.position += spawnerTargetPosition;
+        GameObject barrier = Instantiate(_BarrierPrefab, _barrierSpawner.position, Quaternion.identity);
+        barrier.GetComponent<Barrier>().Init(_player, _barrierSpawner, _sampleLength * _samplesCount + _barrierOffset, _roadSpeed);
+    }
+
     private LevelTrigger SpawnTeleportTrigger(GameObject teleportTrigger)
     {
         Transform teleport = Instantiate(teleportTrigger.transform, transform.position, Quaternion.identity, transform);
