@@ -1,6 +1,8 @@
+using Supercyan.FreeSample;
+using System.Collections;
 using UnityEngine;
 
-public class CivilianCar : MonoBehaviour, ICar
+public class CivilianCar : Vehicle
 {
     [SerializeField] private GameObject _rearLightLeft;
     [SerializeField] private GameObject _rearLightRight;
@@ -11,13 +13,26 @@ public class CivilianCar : MonoBehaviour, ICar
     [SerializeField] private float _distanceToIncreaseSpeed;
     [SerializeField] private float _increaseSpeed;
     [SerializeField] private float _decreaseSpeed;
+    [SerializeField] private float _upCrashForce;
 
+    private Rigidbody _rigidbody;
+    private CrashMe _crashMe;
 
+    private StripManager _stipManager;
+    private CoinController _coinController;
+    private Transform _playerPosition;
 
-    public int ID { get { return _id; } }
-    public float Speed { get { return _speed; } set { _speed = value; } }
-    public float HalfLengthOfCar { get { return _halfLengthOfCar; } }
-    public bool InGame { get { return _inGame; } set { _inGame = value; } }
+    private bool _lastCar = false;
+    private bool _carCrashed = false;
+
+    public override bool InGame { get { return _inGame; } set { _inGame = value; } }
+    public override bool LastCar { get{ return _lastCar; } set { _lastCar = value; } }
+    public override bool CarCrashed {get { return _carCrashed; } set { _carCrashed = value; } }
+
+    public Transform PlayerPosition { get { return _playerPosition; } }
+    public override int ID { get { return _id; } }
+    public override float HalfLengthOfCar { get { return _halfLengthOfCar; } }
+    public override float Speed { get { return _speed; } }
 
 
     private Vector3 _forwardRay;
@@ -29,8 +44,12 @@ public class CivilianCar : MonoBehaviour, ICar
 
     private bool _inGame = true;
 
-    public void Init(int id, float maxSpeed, float speed, float halfLength, float halfHeight)
+    public override void Init(int id, float maxSpeed, float speed, float halfLength, float halfHeight)
     {
+        _stipManager = GetComponentInParent<StripManager>();
+        _coinController = GetComponent<CoinController>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _crashMe = GetComponent<CrashMe>();
         _id = id;
         _maxSpeed = maxSpeed;
         _speed = speed;
@@ -45,7 +64,6 @@ public class CivilianCar : MonoBehaviour, ICar
             CheckFrontDistance();
             DoMove();
         }
-
     }
 
     private void CheckFrontDistance()
@@ -79,7 +97,7 @@ public class CivilianCar : MonoBehaviour, ICar
         }
     }
 
-    public void ChangeSpeed(float value)
+    public override void ChangeSpeed(float value)
     {
         _speed += value * Time.deltaTime;
     }
@@ -88,5 +106,29 @@ public class CivilianCar : MonoBehaviour, ICar
     {
         _speed = Mathf.Clamp(_speed, 0f, _maxSpeed);
         transform.Translate(transform.forward *  _speed * Time.deltaTime);
+    }
+
+    public override void OnCrash()
+    {
+        if(!_carCrashed)
+            _stipManager.CarOnCrash(transform.GetSiblingIndex());
+
+        _rigidbody.isKinematic = false;
+        InGame = false;
+        _carCrashed = true;
+        _speed = 0f;
+        _coinController.CoinOnCarCrash(transform.up);
+        _crashMe.DoCrash(_upCrashForce);
+    }
+
+    public override void ResetParams(float speed)
+    {
+        transform.rotation = Quaternion.Euler(Vector3.zero);
+        _coinController.RespawnCoin();
+        _rigidbody.isKinematic = true;
+        _speed = speed;
+        _carCrashed = false;
+        _inGame = true;
+        _maxSpeed = 2f;
     }
 }

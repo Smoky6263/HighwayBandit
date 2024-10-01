@@ -388,11 +388,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8668666358998481846}
   - component: {fileID: 5024060920235247177}
+  - component: {fileID: 7877724793485484089}
   - component: {fileID: 6705406843666703070}
   - component: {fileID: 1545517038894594814}
-  - component: {fileID: 1073425110346583861}
   - component: {fileID: -3547042426656822232}
   - component: {fileID: 6387940309975752573}
+  - component: {fileID: -9183300272375151223}
   m_Layer: 0
   m_Name: truck_car
   m_TagString: Untagged
@@ -442,6 +443,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.03297, y: 1.8646921, z: 4.440914}
   m_Center: {x: 0, y: 1.2788944, z: -0.12050772}
+--- !u!54 &7877724793485484089
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804642206771154028}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &6705406843666703070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +490,7 @@ MonoBehaviour:
   _distanceToIncreaseSpeed: 4
   _increaseSpeed: 1
   _decreaseSpeed: 0.8
+  _upCrashForce: 2
 --- !u!114 &1545517038894594814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,18 +501,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97100e07a384d9a4c83b606941f3ba46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1073425110346583861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5804642206771154028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5d20d56f02b4c4eb39c60b82dc7c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-3547042426656822232
@@ -498,7 +515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d372486d2203b8640aadd5845d80029b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upForce: 2
 --- !u!114 &6387940309975752573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +531,18 @@ MonoBehaviour:
     type: 3}
   _coinSpawnPosition: {fileID: 523542834497370029}
   _spawnChance: 50
+--- !u!114 &-9183300272375151223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5804642206771154028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebfefbc23f40c1c46bc144a69b3fa74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6420036074144952898
 GameObject:
   m_ObjectHideFlags: 0

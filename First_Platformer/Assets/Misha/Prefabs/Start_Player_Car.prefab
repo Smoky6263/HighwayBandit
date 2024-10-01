@@ -176,9 +176,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2992978684430047348}
   - component: {fileID: 1260292544263092052}
+  - component: {fileID: 2995482853877236930}
   - component: {fileID: 1641020788216116630}
   - component: {fileID: 8583803142105233685}
   - component: {fileID: 1907278341265914875}
+  - component: {fileID: 7523066682877341675}
   m_Layer: 0
   m_Name: Start_Player_Car
   m_TagString: Untagged
@@ -227,6 +229,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.03297, y: 1.8646921, z: 4.440914}
   m_Center: {x: 0, y: 1.2788944, z: -0.12050772}
+--- !u!54 &2995482853877236930
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466074864563848276}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &1641020788216116630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToStart: 5
   _distanceToStartGame: 40
+  _upCrashForce: 2
 --- !u!114 &8583803142105233685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +295,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d372486d2203b8640aadd5845d80029b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upForce: 2
+--- !u!114 &7523066682877341675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466074864563848276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebfefbc23f40c1c46bc144a69b3fa74d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5051397952591960412
 GameObject:
   m_ObjectHideFlags: 0

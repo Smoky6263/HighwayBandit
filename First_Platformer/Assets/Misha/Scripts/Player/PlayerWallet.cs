@@ -3,7 +3,6 @@ using System;
 public static class PlayerWallet
 {
     public static event Action<int> OnCoinChangeEvent;
-    //DistanceToPlayer, CarSpawner
 
     private static int _coinsCount = 0;
     private static int _coinsCountToEndLevel = 0;

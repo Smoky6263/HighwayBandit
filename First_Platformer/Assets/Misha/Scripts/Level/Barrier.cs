@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Barrier : MonoBehaviour, ICar
+public class Barrier : MonoBehaviour
 {
     private BarrierRespawner _barrierRespawner;
     private Transform _respawnPosition;

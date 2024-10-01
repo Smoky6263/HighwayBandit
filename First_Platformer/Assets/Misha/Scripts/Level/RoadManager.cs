@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoadManager : MonoBehaviour
@@ -47,11 +48,11 @@ public class RoadManager : MonoBehaviour
             GameObject road = Instantiate(roadSamples[Random.Range(0, roadSamples.Count)], transform.position + targetPosition, Quaternion.identity, transform) ;
             RespawnRoad initRoad = road.GetComponent<RespawnRoad>();
             MovableObject movableObject = road.GetComponent<MovableObject>();
-            PlayerOnGroundDefeat playerOnGroundDefeat = road.GetComponent<PlayerOnGroundDefeat>();
+            PlayerOnDefeatController playerOnDefeatController = road.GetComponent<PlayerOnDefeatController>();
 
             movableObject.Init(_roadSpeed);
             initRoad.Init(id, _sampleLength, _samplesCount, _roadSpeed);
-            playerOnGroundDefeat.Init(_gameOverPanel);
+            playerOnDefeatController.Init(_gameOverPanel);
             _roadSamplesList.Add(road);
         }
     }
@@ -62,6 +63,13 @@ public class RoadManager : MonoBehaviour
         _barrierSpawner.position += spawnerTargetPosition;
         GameObject barrier = Instantiate(_BarrierPrefab, _barrierSpawner.position, Quaternion.identity);
         barrier.GetComponent<Barrier>().Init(_player, _barrierSpawner, _sampleLength * _samplesCount + _barrierOffset, _roadSpeed);
+
+        for(int i = 0; i < barrier.transform.childCount; i++)
+        {
+            Transform child = barrier.transform.GetChild(i);
+            if (child.GetComponentInChildren<BarrierChild>() != null)
+                child.GetComponent<BarrierChild>().Init(_gameOverPanel);
+        }
     }
 
     private LevelTrigger SpawnTeleportTrigger(GameObject teleportTrigger)

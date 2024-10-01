@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class CheckCollision : MonoBehaviour
 {
-    [SerializeField] private float _upForce;
-
     private Collider _myCollider;
 
     private Vector3 _size;
@@ -25,75 +23,13 @@ public class CheckCollision : MonoBehaviour
 
         foreach (Collider collider in hitColliders)
         {
-            StartCarOnCollision(collider);
-            CivilianCarOnCollision(collider);
-        }
-    }
-
-    private void CivilianCarOnCollision(Collider collider)
-    {
-        if (transform.GetComponent<CivilianCar>() != null)
-        {
-            CivilianCarHitStartCar(collider);
-            CivilianCarHitCivilianCar(collider);
-        }
-    }
-    private void StartCarOnCollision(Collider collider)
-    {
-        if (transform.GetComponent<StartPlayerCar>() != null)
-        {
-            if (collider.transform.GetComponent<CivilianCar>() != null)
+            if (_myCollider != collider && collider.transform.GetComponent<Vehicle>() != null && transform.GetComponent<Vehicle>().InGame && collider.transform.GetComponent<Vehicle>().InGame)
             {
-                if (collider.transform.GetComponent<CivilianCar>().InGame)
-                {
-                    collider.GetComponent<CoinController>().CoinOnCarCrash(transform.forward);
-                    collider.transform.GetComponent<DistanceToPlayer>().SetCrashedCar();
-                    collider.transform.GetComponent<CivilianCar>().InGame = false;
-                    collider.transform.GetComponent<CivilianCar>().Speed = 0f;
-                    if (collider.transform.GetComponent<CrashMe>() == null)
-                    {
-                        CrashMe crashCar = collider.gameObject.AddComponent<CrashMe>();
-                        crashCar.Init(_upForce);
-                    }
-                    transform.GetComponent<StartPlayerCar>().DestroyMe();
-                }
+                transform.GetComponent<Vehicle>().OnCrash();
+                collider.transform.GetComponent<Vehicle>().OnCrash();
             }
         }
     }
-
-
-    private void CivilianCarHitStartCar(Collider collider)
-    {
-        if (collider.transform.GetComponent<StartPlayerCar>() != null)
-        {
-            collider.transform.GetComponent<StartPlayerCar>().ChangeSpeed(0f);
-            if (collider.transform.GetComponent<CrashMe>() == null)
-            {
-                CrashMe crashCar = collider.gameObject.AddComponent<CrashMe>();
-                crashCar.Init(_upForce);
-            }
-        }
-    }
-    private void CivilianCarHitCivilianCar(Collider collider)
-    {
-        if (collider != _myCollider && collider.transform.GetComponent<CivilianCar>() != null)
-        {
-            if (collider.transform.GetComponent<CivilianCar>().InGame)
-            {
-                collider.GetComponent<CoinController>().CoinOnCarCrash(transform.forward);
-                collider.transform.GetComponent<DistanceToPlayer>().SetCrashedCar();
-                collider.transform.GetComponent<CivilianCar>().InGame = false;
-                collider.transform.GetComponent<CivilianCar>().Speed = 0f;
-
-                if (collider.transform.GetComponent<CrashMe>() == null)
-                {
-                    CrashMe crashCar = collider.gameObject.AddComponent<CrashMe>();
-                    crashCar.Init(_upForce);
-                }
-            }
-        }
-    }
-
 
     private void OnDrawGizmos()
     {

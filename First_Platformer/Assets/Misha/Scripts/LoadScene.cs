@@ -7,8 +7,8 @@ public class LoadScene : MonoBehaviour
 {
     [SerializeField] private GameObject _loadingScreen;
     [SerializeField] private Slider _loadingSlider;
-    [SerializeField] private string _sceneMenu;
-    public void Load() => StartCoroutine(LoadingGameCoroutine(_sceneMenu));
+    [SerializeField] private string _sceneName;
+    public void Load() => StartCoroutine(LoadingGameCoroutine(_sceneName));
 
     private IEnumerator LoadingGameCoroutine(string sceneName)
     {

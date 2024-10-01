@@ -1,19 +1,15 @@
 using UnityEngine;
 
-public class BarrierChild : MonoBehaviour
+public class BarrierChild : PlayerOnDefeatController
 {
+    [Header("Звук при ударе игрока об барьер")]
+    [SerializeField] private AudioClip _audioClip;
     private AudioSource _audioSource;
-
+    
     private void Awake() => _audioSource = GetComponent<AudioSource>();
-    private void OnTriggerEnter(Collider other)
+    protected override void GameOver(Collision collision)
     {
-
-        if(other.GetComponent<PlayerOnJump>() != null)
-        {
-            other.transform.SetParent(null);
-            Camera.main.GetComponent<CameraScript>().ControlMode = CameraControllMode.GameOver;
-            Camera.main.GetComponent<CameraScript>().ResetCamera();
-            //_audioSource
-        }
+        base.GameOver(collision);
+        _audioSource.PlayOneShot(_audioClip);
     }
 }

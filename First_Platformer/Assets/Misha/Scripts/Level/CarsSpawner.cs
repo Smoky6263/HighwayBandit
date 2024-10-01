@@ -28,17 +28,15 @@ public class CarsSpawner : MonoBehaviour
     {
         float halfLength = _delorianPrefab.GetComponentInChildren<Renderer>().bounds.size.z / 2;
         float halfHeight = _delorianPrefab.GetComponentInChildren<Renderer>().bounds.size.y / 2;
-        float randomizeDistanceBetweenCars = Random.Range(_minDistance, _maxDistance);
         int randomStrip = Random.Range(0, _carSpawnPosition.Count);
         float firstCarSpeed = _carSpawnPosition[randomStrip].GetComponent<StripManager>().ReturnFirstCarSpeed();
         Vector3 firstCarPosition = _carSpawnPosition[randomStrip].GetComponent<StripManager>().ReturnFirstCarPosition();
-        Vector3 offsetPosition = new Vector3(0f ,0f, halfLength + 4f);
+        Vector3 offsetPosition = new Vector3(0f ,0f, halfLength + 2f);
         GameObject delorian = Instantiate(_delorianPrefab, firstCarPosition + offsetPosition, Quaternion.identity);
         DelorianCar civilianDelorian = delorian.GetComponent<DelorianCar>();
         PlayerReachVictoryCar levelPassed = delorian.GetComponentInChildren<PlayerReachVictoryCar>();
         levelPassed.Init(_levelPassedPanel);
         civilianDelorian.Init(firstCarSpeed, halfLength, halfHeight);
-        Debug.Log($"Level Passed, i spawn {delorian.name}");
     }
 
     private void SpawnCars()
@@ -67,10 +65,10 @@ public class CarsSpawner : MonoBehaviour
                 CreateNewCar(out randomizeCar, out speed, out randomizeDistanceBetweenCars, out halfLength, out halfHeight);
                 GameObject car = Instantiate(_carPrefabs[randomizeCar], currentSpawnPosition + nextSpawnPosition, Quaternion.identity, _carSpawnPosition[strip]);
                 
-                CivilianCar civilianCar = car.GetComponent<CivilianCar>();
+                Vehicle civilianCar = car.GetComponent<Vehicle>();
                 civilianCar.Init(id, _carsSpeed, speed, halfLength, halfHeight);
 
-                stripManager.AddCarInArray(id, car.transform);
+                stripManager.AddCarInArray(id, civilianCar);
 
                 currentSpawnPosition = new Vector3(_carSpawnPosition[strip].position.x, _carSpawnPosition[strip].position.y, car.transform.position.z + halfLength);
                 nextSpawnPosition = new Vector3(0f,0f, halfLength + randomizeDistanceBetweenCars);
