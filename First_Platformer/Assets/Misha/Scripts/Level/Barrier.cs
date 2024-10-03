@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Barrier : MonoBehaviour
 {
-    private BarrierRespawner _barrierRespawner;
+    private RandomElementsRespawner _barrierRespawner;
     private Transform _respawnPosition;
     private float _respawnDistance;
     private float _speed;
@@ -18,8 +18,7 @@ public class Barrier : MonoBehaviour
         _respawnDistance = respawnDistance;
         _lastPosition = transform.position;
         _totalDistance = 0f;
-        _barrierRespawner = GetComponentInChildren<BarrierRespawner>();
-        _barrierRespawner.Init(player);
+        _barrierRespawner = GetComponentInChildren<RandomElementsRespawner>();
     }
     public void ChangeSpeed(float value) => _speed = value;
 
@@ -34,7 +33,7 @@ public class Barrier : MonoBehaviour
         if(_totalDistance > _respawnDistance) 
         {
             transform.position = _respawnPosition.position;
-            _barrierRespawner.ResetBarrier();
+            _barrierRespawner.ResetElements();
             _totalDistance = 0f;
         }
     }

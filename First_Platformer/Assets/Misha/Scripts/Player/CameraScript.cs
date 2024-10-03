@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public enum CameraControllMode { Player, GameOver }
+public enum CameraControllMode { Player, Test, GameOver }
 public class CameraScript : MonoBehaviour
 {
     [SerializeField] private Transform _player;
@@ -20,13 +20,17 @@ public class CameraScript : MonoBehaviour
     public void Init(Transform player)
     {
         _player = player;
-        _controlMode = CameraControllMode.Player;
+        _controlMode = CameraControllMode.Test;
     }
 
     private void FixedUpdate()
     {
         switch (_controlMode)
         {
+            case CameraControllMode.Test:
+                TestCameraPosition();
+                break;
+
             case CameraControllMode.Player:
                 CameraPosition();
                 break;
@@ -50,6 +54,16 @@ public class CameraScript : MonoBehaviour
 
         transform.position = Vector3.Lerp(currentPosition, targetPosition, _cameraPositionSpeed);
         
+        CameraRotation();
+    }
+
+    private void TestCameraPosition()
+    {
+        Vector3 currentPosition = transform.position;
+        Vector3 targetPosition = new Vector3(_player.transform.position.x, _cameraHeight, _player.transform.position.z - _cameraOffset);
+
+        transform.position = Vector3.Lerp(currentPosition, targetPosition, _cameraPositionSpeed);
+
         CameraRotation();
     }
     private void CameraRotation()

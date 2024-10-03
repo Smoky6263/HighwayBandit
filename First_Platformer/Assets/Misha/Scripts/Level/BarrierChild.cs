@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BarrierChild : PlayerOnDefeatController
+public class BarrierChild : PlayerOnDefeatTrigger
 {
     [Header("Звук при ударе игрока об барьер")]
     [SerializeField] private AudioClip _audioClip;

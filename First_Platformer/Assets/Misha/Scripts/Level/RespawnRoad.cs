@@ -15,9 +15,11 @@ public class RespawnRoad : MonoBehaviour
 
     private bool _itsFirstRespawn = true;
 
+    private SpawnRandomProps _randomProps;
 
     public void Init(int id, float sampleLength, int samplesCount, float speed)
     {
+        _randomProps = GetComponentInChildren<SpawnRandomProps>();
         _id = id;
         _speed = speed;
         _sampleLength = sampleLength;
@@ -71,6 +73,8 @@ public class RespawnRoad : MonoBehaviour
         if (_time < _timeToRespawn) return;
 
         _time = 0f;
+
+        _randomProps.ResetElements();
 
         switch (_speed)
         {

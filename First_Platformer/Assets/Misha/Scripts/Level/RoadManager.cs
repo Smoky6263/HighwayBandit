@@ -48,10 +48,10 @@ public class RoadManager : MonoBehaviour
             GameObject road = Instantiate(roadSamples[Random.Range(0, roadSamples.Count)], transform.position + targetPosition, Quaternion.identity, transform) ;
             RespawnRoad initRoad = road.GetComponent<RespawnRoad>();
             MovableObject movableObject = road.GetComponent<MovableObject>();
-            PlayerOnDefeatController playerOnDefeatController = road.GetComponent<PlayerOnDefeatController>();
+            PlayerOnDefeatTrigger playerOnDefeatController = road.GetComponent<PlayerOnDefeatTrigger>();
 
-            movableObject.Init(_roadSpeed);
             initRoad.Init(id, _sampleLength, _samplesCount, _roadSpeed);
+            movableObject.Init(_roadSpeed);
             playerOnDefeatController.Init(_gameOverPanel);
             _roadSamplesList.Add(road);
         }
