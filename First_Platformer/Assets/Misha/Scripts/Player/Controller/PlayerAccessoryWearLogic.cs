@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 public class PlayerAccessoryWearLogic : MonoBehaviour
 {
     [SerializeField] private SkinnedMeshRenderer m_characterRenderer;
