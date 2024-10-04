@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -23,9 +24,10 @@ public class StripManager : MonoBehaviour
 
     private void Start()
     {
-        //LevelFinisher.OnVictoryCarSpawnEvent += StopCheckingDistance;
-        //LevelFinisher.PlayerDefeatEvent += StopCheckingDistance;
+        LevelFinisher.OnVictoryCarSpawnEvent += StopCheckingDistance;
+        LevelFinisher.PlayerDefeatEvent += StopCheckingDistance;
     }
+
 
     public void AddCarInArray(int id, Vehicle car)
     {
@@ -92,4 +94,20 @@ public class StripManager : MonoBehaviour
     }
 
     public float ReturnFirstCarSpeed() { return _carsArray[_carsArray.Length - 1].Speed; }
+    private void StopCheckingDistance()
+    {
+        StopAllCoroutines();
+        LevelFinisher.OnVictoryCarSpawnEvent -= StopCheckingDistance;
+        LevelFinisher.PlayerDefeatEvent -= StopCheckingDistance;
+    }
+
+    private void OnEnable()
+    {
+        LevelFinisher.OnVictoryCarSpawnEvent += StopCheckingDistance;
+        LevelFinisher.PlayerDefeatEvent += StopCheckingDistance;
+    }
+
+    private void OnDisable() => StopCheckingDistance();
+    private void OnDestroy() => StopCheckingDistance();
+    private void OnApplicationQuit()=> StopCheckingDistance();
 }

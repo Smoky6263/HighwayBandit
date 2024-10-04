@@ -392,7 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_characterRenderer: {fileID: 7011764701442056111}
   m_accessoriesToAttach:
-  - {fileID: 5990721393228725184}
+  - {fileID: 710291755687727536}
 --- !u!114 &-1076803164247307311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1495,9 +1495,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ed01233adbbc8a43ba3d96da20ef098, type: 3}
---- !u!114 &5990721393228725184 stripped
+--- !u!114 &710291755687727536 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4242973653807884421, guid: 8ed01233adbbc8a43ba3d96da20ef098,
+  m_CorrespondingSourceObject: {fileID: 6924906499769860853, guid: 8ed01233adbbc8a43ba3d96da20ef098,
     type: 3}
   m_PrefabInstance: {fileID: 7620446069275775813}
   m_PrefabAsset: {fileID: 0}
