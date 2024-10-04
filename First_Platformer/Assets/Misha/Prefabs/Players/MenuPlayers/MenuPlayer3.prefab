@@ -271,7 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3518246994717548452}
   - component: {fileID: 1690897573689992325}
-  - component: {fileID: 6260781567470494269}
+  - component: {fileID: 5260683063165758912}
   m_Layer: 0
   m_Name: MenuPlayer3
   m_TagString: Untagged
@@ -318,7 +318,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6260781567470494269
+--- !u!114 &5260683063165758912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3142811720079799082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f5e3a09073e3c4bae993cf07a5ffc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 4de34b703703cd44ab569db8170f8501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_characterRenderer: {fileID: 7011764701442056111}
@@ -575,8 +575,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 20e17aac92cea844aaa708706067eb14, type: 2}
-  - {fileID: 2100000, guid: c9893909aae4a0644a72da08dc9b62ed, type: 2}
+  - {fileID: 2100000, guid: 1d218e432cb7e854f981035e858666c7, type: 2}
+  - {fileID: 2100000, guid: 85a3a6788342f0d4c9ee772b8545301b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1252,7 +1252,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9b5b9a724e2bc4f85affcad29ea34d, type: 3}
+  m_Script: {fileID: 11500000, guid: a89e5ecaaf8e42a4cb474eea96e927a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &3187038643115505739 stripped
