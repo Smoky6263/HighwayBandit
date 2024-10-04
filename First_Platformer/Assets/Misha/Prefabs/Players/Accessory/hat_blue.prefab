@@ -67,11 +67,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b8c72eccb757a0b45af09e039430b378, type: 2}
+      objectReference: {fileID: 2100000, guid: e3677659b58c4014798bf62c756024de, type: 2}
     - target: {fileID: 919132149155446097, guid: 1e5585899628cae469db57dafc0102ae,
         type: 3}
       propertyPath: m_Name
-      value: FreeSample_anniversy_hat_1_onWear_blue
+      value: hat_blue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
