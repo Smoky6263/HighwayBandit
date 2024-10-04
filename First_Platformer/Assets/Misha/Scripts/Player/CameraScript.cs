@@ -64,7 +64,7 @@ public class CameraScript : MonoBehaviour
 
         transform.position = Vector3.Lerp(currentPosition, targetPosition, _cameraPositionSpeed);
 
-        CameraRotation();
+        //CameraRotation();
     }
     private void CameraRotation()
     {
