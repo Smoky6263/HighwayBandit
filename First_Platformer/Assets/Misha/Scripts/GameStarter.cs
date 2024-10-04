@@ -40,11 +40,11 @@ public class GameStarter : MonoBehaviour
 
     private IEnumerator StartGame()
     {
-        _player.GetComponent<SimpleSampleCharacterControl>().enabled = false;
+        _player.GetComponent<PlayerController>().enabled = false;
 
         yield return new WaitForSeconds(5f);
 
-        _player.GetComponent<SimpleSampleCharacterControl>().enabled = true;
+        _player.GetComponent<PlayerController>().enabled = true;
         yield break;
     }
 

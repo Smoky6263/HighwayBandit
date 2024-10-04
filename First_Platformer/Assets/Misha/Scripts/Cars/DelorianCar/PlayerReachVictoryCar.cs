@@ -12,16 +12,16 @@ public class PlayerReachVictoryCar : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.GetComponent<SimpleSampleCharacterControl>() != null)
+        if (collision.transform.GetComponent<PlayerController>() != null)
         {
-            SimpleSampleCharacterControl playerController = collision.transform.GetComponent<SimpleSampleCharacterControl>();
+            PlayerController playerController = collision.transform.GetComponent<PlayerController>();
             Animator playerAnimator = collision.transform.GetComponent<Animator>();
             playerController.transform.SetParent(transform);
             LevelPassed(playerController, playerAnimator);
         }
     }
 
-    private void LevelPassed(SimpleSampleCharacterControl playerController, Animator playerAnimator)
+    private void LevelPassed(PlayerController playerController, Animator playerAnimator)
     {
         playerController.enabled = false;
         playerAnimator.SetFloat("MoveSpeed", 0f);

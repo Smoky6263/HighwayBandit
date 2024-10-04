@@ -4274,7 +4274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinsCountToWin: 20
-  _playerPrefab: {fileID: 3142811720079799082, guid: 3e00c3dde286cd9479fb0935dd193824,
+  _playerPrefab: {fileID: 3142811720079799082, guid: cf1e27be901d3964db82d3c296a31c15,
     type: 3}
   _startPlayerCarPrefab: {fileID: 3466074864563848276, guid: 9be93557e315ff8478f7b0b38b728a3b,
     type: 3}

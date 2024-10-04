@@ -5,7 +5,7 @@ public class ParentingPlayerToObject : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.GetComponent<SimpleSampleCharacterControl>() != null)
+        if (collision.transform.GetComponent<PlayerController>() != null)
             SetPlayerParent(collision);
     }
 
@@ -13,7 +13,7 @@ public class ParentingPlayerToObject : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.transform.GetComponent<SimpleSampleCharacterControl>() != null)
+        if (collision.transform.GetComponent<PlayerController>() != null)
             ResetPlayerParent(collision);
     }
 
