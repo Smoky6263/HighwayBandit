@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 4989338841394823809}
   - component: {fileID: 8362282468241187089}
   - component: {fileID: 6260781567470494269}
-  - component: {fileID: 3721721014206299207}
+  - component: {fileID: 1389384413022233236}
   - component: {fileID: -1076803164247307311}
   - component: {fileID: 6693695468993069976}
   - component: {fileID: 3866979733170833342}
@@ -386,12 +386,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3142811720079799082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f5e3a09073e3c4bae993cf07a5ffc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 4de34b703703cd44ab569db8170f8501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_characterRenderer: {fileID: 7011764701442056111}
   m_accessoriesToAttach: []
---- !u!114 &3721721014206299207
+--- !u!114 &1389384413022233236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,11 +400,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3142811720079799082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba158ff05cf30224f94bfdddec8e7635, type: 3}
+  m_Script: {fileID: 11500000, guid: af9c4aea61396ea428cae4fe067208df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_moveSpeed: 4
-  m_turnSpeed: 600
+  m_turnSpeed: 200
   m_jumpForce: 5
   m_animator: {fileID: 1690897573689992325}
   m_rigidBody: {fileID: 4989338841394823809}
