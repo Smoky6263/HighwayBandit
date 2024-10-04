@@ -5,7 +5,7 @@ public class PlayerOnGameOver : MonoBehaviour
 {
     public void OnGameOver()
     {
-        SimpleSampleCharacterControl controller = GetComponent<SimpleSampleCharacterControl>();
+        PlayerController controller = GetComponent<PlayerController>();
         Animator animator = GetComponent<Animator>();
         Camera camera = GetComponent<SetUpCamera>().Camera;
 

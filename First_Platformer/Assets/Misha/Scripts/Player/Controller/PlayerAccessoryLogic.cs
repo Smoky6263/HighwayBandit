@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Supercyan.FreeSample
-{
-    public class AccessoryLogic : MonoBehaviour
+public class PlayerAccessoryLogic : MonoBehaviour
     {
         [SerializeField] private SkinnedMeshRenderer m_renderer = null;
         public SkinnedMeshRenderer Renderer { get { return m_renderer; } }
@@ -11,4 +9,3 @@ namespace Supercyan.FreeSample
 
         private void Awake() { Destroy(m_rig); }
     }
-}

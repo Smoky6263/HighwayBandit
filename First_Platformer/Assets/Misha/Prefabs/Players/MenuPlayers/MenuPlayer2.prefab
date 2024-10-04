@@ -271,7 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3518246994717548452}
   - component: {fileID: 1690897573689992325}
-  - component: {fileID: 6260781567470494269}
+  - component: {fileID: 6077553733647156265}
   m_Layer: 0
   m_Name: MenuPlayer2
   m_TagString: Untagged
@@ -318,7 +318,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6260781567470494269
+--- !u!114 &6077553733647156265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,11 +327,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3142811720079799082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a89e5ecaaf8e42a4cb474eea96e927a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4de34b703703cd44ab569db8170f8501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_renderer: {fileID: 0}
-  m_rig: {fileID: 0}
+  m_characterRenderer: {fileID: 0}
+  m_accessoriesToAttach:
+  - {fileID: 5990721393228725184}
 --- !u!1 &3299545216038869815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,6 +1243,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ed01233adbbc8a43ba3d96da20ef098, type: 3}
+--- !u!114 &5990721393228725184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4242973653807884421, guid: 8ed01233adbbc8a43ba3d96da20ef098,
+    type: 3}
+  m_PrefabInstance: {fileID: 7620446069275775813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87d0e8050dbefcf4594a816287157903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7513688532749963630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 109415401951625771, guid: 8ed01233adbbc8a43ba3d96da20ef098,

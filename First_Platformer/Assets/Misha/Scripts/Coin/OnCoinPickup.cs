@@ -19,7 +19,7 @@ public class OnCoinPickup : MonoBehaviour
 
     private void OnPlayerPickup(Collider collider)
     {
-        if (collider.GetComponent<SimpleSampleCharacterControl>() != null)
+        if (collider.GetComponent<PlayerController>() != null)
         {
             _audioSource.Play();
             PlayerWallet.AddCoin();
